@@ -1,5 +1,6 @@
-import { Button, Flex, Input, Text, Textarea } from '@chakra-ui/react'
+import { Box, Button, Flex, Input, Text, Textarea } from '@chakra-ui/react'
 import type { NextPage } from 'next'
+import router from 'next/router';
 import { useState } from 'react';
 import { SiIpfs } from 'react-icons/si'
 import { constSelector } from 'recoil';
@@ -57,6 +58,9 @@ const AnalogyGenerator: NextPage = () => {
                 <Flex p={2.5} borderTopRadius="10px" height="40px" bg="#202125">
                     <Text color="white" fontWeight={800} align="center"><SiIpfs /></Text>
                     <Text ml={1.5} mt={-1} fontWeight={800} color="white">Analogy Generator</Text>
+                    <Box onClick={() => router.push('/')} _hover={{cursor: 'pointer'}} mt={-1} borderRadius="10px" ml="auto" border="2px solid #38393E" height="25px" width="180px">
+                                <Text  ml={2.5} mt={-0.5} fontWeight={800} color="white" mr={0}>← Back to Dashboard</Text>
+                    </Box>
                 </Flex>
                 <Flex ml={2} mr={1} mt={6} mb={6} flexDir="column" pr={3} flexDirection="row" width="100%">
                     <Text ml={10} mr={10} fontWeight={800} color="white" fontSize="13pt">Given a topic and a piece of text, the analogy generator attempts to explain the relationship between these topics. Using machine learning, it looks for patterns in a large corpus of text and uses those patterns to generate an analogy. We hope that by providing information in a more easily interpreted manner, the analogy generator can help people better understand the topics being discussed.</Text>
