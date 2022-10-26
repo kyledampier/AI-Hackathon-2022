@@ -1,0 +1,13 @@
+table {
+    color: white;
+    width: 100%;
+}
+
+thead {
+    background-color: lightgray;
+    color: white;
+}
+
+td {
+    align-content: center;
+}

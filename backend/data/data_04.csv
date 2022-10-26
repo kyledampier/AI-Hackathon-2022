@@ -1,0 +1,142 @@
+Country,Code,ContinentCode,Year,Quality of roads 1(low) - 7(high),Quality of railroad infrastructure 1(low) - 7(high),Quality of port infrastructure 1(low) - 7(high),Quality of air transport infrastructure 1(low) - 7(high)
+Albania,ALB,EU,2019,3.9,1.2,4.3,4.1
+Algeria,DZA,AF,2019,4,3.8,3.9,4
+Angola,AGO,AF,2019,2.2,,2.8,3.3
+Argentina,ARG,SA,2019,3.6,2.7,3.9,4.4
+Armenia,ARM,AS,2019,3.6,3.1,2.4,4.6
+Australia,AUS,OC,2019,4.9,4.4,4.8,5.5
+Austria,AUT,EU,2019,6,5.3,3.7,5.2
+Azerbaijan,AZE,AS,2019,5.2,,5.1,5.8
+Bahrain,BHR,AS,2019,5.2,,5.1,5.4
+Bangladesh,BGD,AS,2019,3.2,3.1,3.5,3.8
+Barbados,BRB,NA,2019,3.2,,,4.7
+Belgium,BEL,EU,2019,4.4,4.1,5.6,5.6
+Benin,BEN,AF,2019,3.2,1.7,3.7,3.9
+Bolivia,BOL,SA,2019,3.5,2.6,2,3.6
+Bosnia and Herzegovina,BIH,EU,2019,2.8,2.2,2.1,3.5
+Botswana,BWA,AF,2019,3.8,3.6,3.2,3.7
+Brazil,BRA,SA,2019,3,2.5,3.2,4.4
+Brunei,BRN,AS,2019,5,,4.1,4.8
+Bulgaria,BGR,EU,2019,3.4,3.1,4.3,4.5
+Burkina Faso,BFA,AF,2019,2.8,2.5,2.8,3.4
+Burundi,BDI,AF,2019,3.9,,3.2,3.8
+Cambodia,KHM,AS,2019,3.6,,3.6,3.7
+Cameroon,CMR,AF,2019,2.4,2.7,3.1,3.3
+Canada,CAN,NA,2019,5,4.5,5.1,5.3
+Cape Verde,CPV,AF,2019,4,,3.2,3.3
+Chad,TCD,AF,2019,1.9,,1.9,2.7
+Chile,CHL,SA,2019,5.2,3.2,4.9,4.9
+China,CHN,AS,2019,4.6,4.5,4.5,4.6
+Colombia,COL,SA,2019,3.4,1.7,4.1,4.5
+Costa Rica,CRC,NA,2019,3,,3.9,4.8
+Croatia,HRV,EU,2019,5.6,2.4,4.7,4.8
+Cyprus,CYP,EU,2019,5.1,,4.3,5.1
+Czechia,CZE,EU,2019,3.9,4.5,3.2,5
+Democratic Republic of the Congo,COD,AF,2019,2.1,1.9,2.4,2.8
+Denmark,DNK,EU,2019,5.6,4.5,5.8,5.8
+Dominican Republic,DOM,NA,2019,4.7,,4.9,5.1
+Ecuador,ECU,SA,2019,4.9,,4.5,4.9
+Egypt,EGY,AF,2019,5.1,3.8,4.8,5.1
+El Salvador,SLV,NA,2019,4.2,,3.4,4.5
+Estonia,EST,EU,2019,4.7,3.1,5.6,4.6
+Ethiopia,ETH,AF,2019,3,3,2.8,3.3
+Finland,FIN,EU,2019,5.3,5.5,6.4,6.3
+France,FRA,EU,2019,5.4,5,5.2,5.5
+Gabon,GAB,AF,2019,2.5,2.6,3.3,3.4
+Gambia,GMB,AF,2019,3.7,,3.9,4.4
+Georgia,GEO,AS,2019,3.8,3.9,3.8,4.4
+Germany,DEU,EU,2019,5.3,4.9,5.2,5.5
+Ghana,GHA,AF,2019,3,1.9,3.1,3.7
+Greece,GRC,EU,2019,4.6,3,4.8,5.4
+Guatemala,GTM,NA,2019,2.4,,3.9,4.1
+Guinea,GIN,AF,2019,3.7,,5,5.1
+Haiti,HTI,NA,2019,2.1,,2.1,2.9
+Honduras,HND,NA,2019,4.1,,4.4,4.3
+Hong Kong,HKG,AS,2019,6.1,6.5,6.3,6.6
+Hungary,HUN,EU,2019,4,3.8,3.2,4.6
+Iceland,ISL,EU,2019,4.1,,5.4,5.6
+India,IND,AS,2019,4.5,4.4,4.5,4.9
+Indonesia,IDN,AS,2019,4.2,4.7,4.3,4.9
+Iran,IRN,AS,2019,3.9,3.7,3.7,3.1
+Ireland,IRL,EU,2019,4.4,4,5,5.5
+Israel,ISR,AS,2019,4.9,3.7,4.8,5.4
+Italy,ITA,EU,2019,4.4,4.1,4.7,4.9
+Ivory Coast,CIV,AF,2019,3.6,2.9,4,4.6
+Jamaica,JAM,NA,2019,3.9,,4.5,5.1
+Japan,JPN,AS,2019,6.1,6.8,5.8,6.2
+Jordan,JOR,AS,2019,4.2,2.6,4.4,5.2
+Kazakhstan,KAZ,AS,2019,3.6,4.2,3.3,4.3
+Kenya,KEN,AF,2019,4.1,4,4.2,5
+Kuwait,KWT,AS,2019,3.7,,3.5,3.6
+Kyrgyzstan,KGZ,AS,2019,3.1,2.8,1.5,3
+Laos,LAO,AS,2019,3.7,,3,4
+Latvia,LVA,EU,2019,3.6,4.6,4.9,5.7
+Lebanon,LBN,AS,2019,2.6,,3.6,4.3
+Lesotho,LSO,AF,2019,2.7,,,1.4
+Lithuania,LTU,EU,2019,4.8,4.6,4.8,4.9
+Luxembourg,LUX,EU,2019,5.5,5,4.4,5.6
+Madagascar,MDG,AF,2019,2,2,3.4,3.5
+Malawi,MWI,AF,2019,2.8,2.1,2.2,3.3
+Malaysia,MYS,AS,2019,5.3,5.1,5.2,5.5
+Mali,MLI,AF,2019,3.2,,2.2,4.1
+Malta,MLT,EU,2019,3.3,,5.1,5.5
+Mauritania,MRT,AF,2019,2,2.1,2.3,2.3
+Mauritius,MUS,AF,2019,4.7,,4.5,5
+Mexico,MEX,NA,2019,4.5,3.3,4.3,4.4
+Moldova,MDA,EU,2019,2.6,3,2.3,4.4
+Mongolia,MNG,AS,2019,3.1,3.5,1.6,3.6
+Montenegro,MNE,EU,2019,3.9,3.1,4.2,4.6
+Morocco,MAR,AF,2019,4.7,3.9,5.1,5.3
+Mozambique,MOZ,AF,2019,2.4,2.6,3.3,3
+Namibia,NAM,AF,2019,5.3,3.4,4.9,4.8
+Nepal,NPL,AS,2019,2.9,,2,3.2
+Netherlands,NLD,EU,2019,6.4,5.7,6.4,6.4
+New Zealand,NZL,OC,2019,4.5,3.9,4.9,5.5
+Nicaragua,NIC,NA,2019,4.2,,3.2,3.7
+Nigeria,NGA,AF,2019,2.5,1.8,2.5,3.4
+North Macedonia,MKD,EU,2019,3.4,2.1,2.4,4.3
+Norway,NOR,EU,2019,4.5,4.5,5.1,5.6
+Oman,OMN,AS,2019,5.7,,5.1,5.5
+Pakistan,PAK,AS,2019,4,3.8,4.1,4.2
+Panama,PAN,NA,2019,4.5,4.8,5.7,5.9
+Paraguay,PRY,SA,2019,2.6,,3.5,3.5
+Peru,PER,SA,2019,3.2,2.9,3.8,4.3
+Philippines,PHL,AS,2019,3.7,2.4,3.7,4.1
+Poland,POL,EU,2019,4.3,3.9,4.5,4.8
+Portugal,PRT,EU,2019,6,4.2,4.9,5
+Qatar,QAT,AS,2019,5.5,,5.4,5.7
+Romania,ROU,EU,2019,3,2.8,3.9,4.6
+Russia,RUS,EU,2019,3.5,4.9,4.7,5
+Rwanda,RWA,AF,2019,4.8,,3.2,5
+Saudi Arabia,SAU,AS,2019,5.2,4.5,4.8,5.4
+Senegal,SEN,AF,2019,4.1,2.9,4,4.5
+Serbia,SRB,EU,2019,3.5,2.6,3.1,4.3
+Seychelles,SYC,AF,2019,4,,4.4,4.4
+Singapore,SGP,AS,2019,6.5,5.8,6.5,6.7
+Slovakia,SVK,EU,2019,4,4,3.1,3.8
+Slovenia,SVN,EU,2019,4.9,3.1,4.7,4.6
+South Africa,ZAF,AF,2019,4.5,3,4.5,5.5
+South Korea,KOR,AS,2019,5.9,5.9,5.5,5.9
+Spain,ESP,EU,2019,5.7,5.4,5.4,5.6
+Sri Lanka,LKA,AS,2019,3.9,3.8,4.1,4.6
+Swaziland,SWZ,AF,2019,4,,3.4,3.8
+Sweden,SWE,EU,2019,5.3,4,5.3,5.7
+Switzerland,CHE,EU,2019,6.3,6.4,4.5,6.1
+Taiwan,TWN,AS,2019,5.6,5.4,5.4,5.6
+Tajikistan,TJK,AS,2019,4.5,4.1,1,4.5
+Tanzania,TZA,AF,2019,4.1,3.2,4.1,4.1
+Thailand,THA,AS,2019,4.4,2.8,4.1,5
+Trinidad and Tobago,TTO,NA,2019,3.7,,3,4.2
+Tunisia,TUN,AF,2019,3.6,3.2,3.4,3.6
+Turkey,TUR,EU,2019,5,3.5,4.7,5.4
+Uganda,UGA,AF,2019,3.7,,2.7,3.6
+Ukraine,UKR,EU,2019,3,4.2,3.9,4
+United Arab Emirates,ARE,AS,2019,6,,5.5,6
+United Kingdom,GBR,EU,2019,4.9,4.3,5.2,5.3
+Uruguay,URY,SA,2019,3.7,1.2,4.8,5.1
+USA,USA,NA,2019,5.5,5.2,5.6,5.8
+Venezuela,VEN,SA,2019,2.6,1.5,2.1,2.2
+Vietnam,VNM,AS,2019,3.4,3.6,3.8,4
+Yemen,YEM,AS,2019,2.1,,2.2,2.2
+Zambia,ZMB,AF,2019,3.4,2.1,2.7,4.1
+Zimbabwe,ZWE,AF,2019,2.8,1.9,3.1,3.5
