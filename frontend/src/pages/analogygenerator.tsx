@@ -17,7 +17,7 @@ const AnalogyGenerator: NextPage = () => {
     const getAnalogy = async (target: string, article: string) => {
         const request = await fetch(`http://localhost:8080/analogy`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
             body: JSON.stringify({
                 'text': analogyForm.article,
                 'target': analogyForm.target

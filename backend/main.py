@@ -22,9 +22,10 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=['*'],
+    # allow_credentials=True,
     allow_methods=["*"],
+    allow_headers=["*"]
 )
 
 data = pd.read_csv('data_all.csv')
@@ -92,4 +93,3 @@ def get_rewording(audience: int, text: Union[str, None] = None):
     if text:
         reworded_text = reword(audience, text)
     return {"reworded_text": reworded_text}
-
