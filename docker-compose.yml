@@ -11,8 +11,8 @@ services:
   backend:
     build: ./backend
     ports:
-      - "5000:5000"
+      - "8080:8080"
     volumes:
       - ./backend:/app
     env_file:
-      - ./.env
+      - backend/.env
