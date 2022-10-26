@@ -18,14 +18,17 @@ const SignUp: React.FC = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
+  const [userError, setUserError] = useState("");
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    try {
-      createUserWithEmailAndPassword(regForm.email, regForm.password);
-    } catch (e) {
-      console.log(e);
+    if (regForm.confirmPassword != regForm.password) {
+      setUserError("Passwords do not match!");
+      return;
     }
+
+    createUserWithEmailAndPassword(regForm.email, regForm.password);
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +47,7 @@ const SignUp: React.FC = () => {
             educatus
           </Text>
         </Flex>
-        <Text align="center" mt={5} fontWeight={600} color="white" mb={2}>
+        <Text align="center" fontWeight={600} color="white" mb={2}>
           Sign up to leverage ai tools today!
         </Text>
         <Text fontWeight={900} color="white">
@@ -118,6 +121,8 @@ const SignUp: React.FC = () => {
         <Text textAlign="center" color="red" fontSize="10pt">
           {error
             ? FIREBASE_ERRORS[error?.message as keyof typeof FIREBASE_ERRORS]
+            : userError
+            ? userError
             : ""}
         </Text>
 

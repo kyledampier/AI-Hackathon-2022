@@ -44,7 +44,7 @@ const AuthModal: React.FC = () => {
           bg="#2B2C31"
           border="2px solid #38393E"
           borderRadius="12px"
-          height="418px"
+          height="455px"
         >
           <Flex p={2.5} borderTopRadius="10px" height="40px" bg="#202125">
             <Text mt={0.5} color="white" fontWeight={800} align="center">

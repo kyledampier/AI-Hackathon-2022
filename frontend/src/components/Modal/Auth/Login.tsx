@@ -39,7 +39,7 @@ const Login: React.FC = () => {
           </Text>
         </Flex>
         <Text align="center" fontWeight={600} color="white" mb={2}>
-          Sign in to leverage ai tools today!
+          Login to leverage ai tools today!
         </Text>
         <Text fontWeight={900} color="white">
           Email
