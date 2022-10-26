@@ -7,6 +7,7 @@ import { IoAdd, IoCloseSharp } from 'react-icons/io5';
 import { GiGears } from 'react-icons/gi';
 import { useRecoilState } from 'recoil';
 import { dashboardQueState } from '../../atoms/dashboardQueAtom';
+import router from 'next/router';
 
 const Dashboard:React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -116,8 +117,9 @@ const Dashboard:React.FC = () => {
                                             <Flex ml={2} flexDirection="row" align="center" fontWeight={800}><VscSymbolString /> &nbsp;&nbsp;Reword Sentence</Flex>
                                             <Text onClick={()=>removeFromQue(value)} ml="auto" mt={1} mr={1} color="black" fontWeight={800} align="center"><IoCloseSharp /></Text>
                                         </Flex>
-                                        <Text fontWeight={500} ml={2} mt={2}>Reconstruct sentences using simpler vocabulary for non-technical audiences.</Text>
-                                        
+                                        <Flex onClick={() => router.push('/rewordsentence')}>
+                                            <Text fontWeight={500} ml={2} mt={2}>Reconstruct sentences using simpler vocabulary for non-technical audiences.</Text>
+                                        </Flex>
                                     </Flex>
                                 )
                             } else if (value === 2) {
