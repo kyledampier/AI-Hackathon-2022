@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from ner import extractAndDefineEntities
-
+from analogy import getAnalogy
 openai_api_key = os.environ.get('OPENAI_API_KEY')
 
 app = FastAPI()
@@ -30,15 +30,16 @@ from typing import Union
 
 
 @app.get("/ner")
-def get_ents(text: Union[str, None] = None):
+def entity_endpoint(text: Union[str, None] = None):
     if text:
         entities = extractAndDefineEntities(text)
     return {"entities": entities}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/analogy")
+def analogy_endpoint(target: Union[str, None] = None, text: Union[str, None] = None):
+    analogy = getAnalogy(target, text)
+    return {"analogy": analogy}
 
 
 
