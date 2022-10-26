@@ -132,7 +132,7 @@ const Dashboard:React.FC = () => {
                                             <Text onClick={()=>removeFromQue(value)} ml="auto" mt={1} mr={1} color="black" fontWeight={800} align="center"><IoCloseSharp /></Text>
                                         </Flex>
                                         <Flex mt={1} mr={1} onClick={() => router.push('/textanalyzer')}>
-                                            <Text ml={2} mt={2}>The text analyzer is an important tool for academic research, as it can help to identify and define the most important topics within a text.</Text>
+                                            <Text ml={2} mt={2} mr={2}>The text analyzer is an important tool for academic research, as it can help to identify and define the most important topics within a text.</Text>
                                         </Flex>
                                         <Flex flexDirection="row" justifyContent="center" borderRadius="15px" pl={1} pr={1} pt={1} pb={1} mt="auto" bg="red.100" width="155px" mb={4} ml={3}>
                                             <Text align="center" fontWeight={700} fontSize="11pt" color="red.700">Quality Education</Text>
@@ -152,7 +152,7 @@ const Dashboard:React.FC = () => {
                                         <Flex mt={1} mr={1} onClick={() => router.push('/analogygenerator')}>
                                             <Text fontWeight={500} ml={2} mt={2}>Given a topic and a piece of text, the analogy generator attempts to explain the topics relationship using an analogy</Text>
                                         </Flex>
-                                        <Flex flexDirection="row" justifyContent="center" borderRadius="15px" pl={1} pr={1} pt={1} pb={1} mt="auto" bg="yellow.200" width="165px" mb={4} ml={3}>
+                                        <Flex flexDirection="row" justifyContent="center" borderRadius="15px" pl={1} pr={1} pt={1} pb={1} mt="auto" bg="#fcf090" width="165px" mb={4} ml={3}>
                                             <Text align="center" fontWeight={700} fontSize="11pt" color="yellow.700">Reduces Inequality</Text>
                                             <Tooltip label='Hover me'>
                                                 <Text ml={1} mt="-18px" align="center" fontWeight={700} fontSize="11pt" color="yellow.700">&nbsp;<HiInformationCircle/></Text>
@@ -179,7 +179,7 @@ const Dashboard:React.FC = () => {
                                             <Text onClick={()=>removeFromQue(value)} ml="auto" mt={1} mr={1} color="black" fontWeight={800} align="center"><IoCloseSharp /></Text>
                                         </Flex>
                                         <Flex mt={1} mr={1} onClick={() => router.push('/compare')}>
-                                            <Text fontWeight={500} ml={2} mt={2}>Given a topic and a piece of text, the analogy generator attempts to explain the topics relationship using an analogy</Text>
+                                            <Text fontWeight={500} ml={2} mt={2} mr={2}>Given a topic and a piece of text, the analogy generator attempts to explain the topics relationship using an analogy</Text>
                                         </Flex>
                                         <Flex flexDirection="row" justifyContent="center" borderRadius="15px" pl={1} pr={1} pt={1} pb={1} mt="auto" bg="purple.200" width="170px" mb={4} ml={3}>
                                             <Text align="center" fontWeight={700} fontSize="10pt" color="purple.700">Health and Wellbeing</Text>

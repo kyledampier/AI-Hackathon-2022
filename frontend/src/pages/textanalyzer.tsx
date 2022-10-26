@@ -1,7 +1,7 @@
-import { Box, Button, Flex, Input, Text, Textarea } from '@chakra-ui/react'
+import { Box, Button, Flex, Input, Text, Textarea, Tooltip } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import router from 'next/router';
-import { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { SiMoleculer } from 'react-icons/si'
 import { constSelector } from 'recoil';
 
@@ -12,7 +12,57 @@ const TextAnalyzer: NextPage = () => {
     
     const [loading, setLoading] = useState(false)
     const [analyzedText, setAnalyzedText] = useState('')
+    const [entityArr, setEntityArray] = useState([[]])
     
+    const ResponseRender  = (props : any) => {
+        const fullText = props['fullText']
+        const entities = props['entities']
+        const output: Array<any> = []
+
+        // for (let i = 0; i < entities.length; i++) {
+        //     rendered_entites.push(<EntityHighlight data={entities[i]}/>)
+        // }
+
+        for (let i = 0; i < entities.length; i++) {
+            let parts = []
+            if (output.length == 0) {
+                parts = fullText.split(entities[i][0])
+                for (let j = 0; j < parts.length - 1; j++) {
+                    output.push(parts[j])
+                    output.push(entities[i])
+                }
+                output.push(parts[parts.length - 1])
+            } else {
+                for (let k = 0; k < output.length; k++) {
+                    if (!(typeof output[k] == 'string'))
+                        continue
+                    parts = output[k].split(entities[i][0])
+                    for (let j = 0; j < parts.length - 1; j++) {
+                        output.push(parts[j])
+                        output.push(entities[i])
+                    }
+                    output.push(parts[parts.length - 1])
+                }
+            }
+            
+        }
+
+        console.log(output)
+
+        return (
+            <Text>
+                {output.map((ele : any) => ele)}
+            </Text>
+        )
+    }
+
+    function EntityHighlight(props : any) {
+        return (
+                <span>
+                    <Text color="purple" fontWeight={700}>{props['data'][0]}</Text>
+                </span>
+        )
+    }
     
     const getAnalyzed = async (text: string) => {
         const request = await fetch(`http://localhost:8080/ner`, {
@@ -23,6 +73,7 @@ const TextAnalyzer: NextPage = () => {
             })
         })
         const data = await request.json()
+
         return data
     }
 
@@ -31,9 +82,14 @@ const TextAnalyzer: NextPage = () => {
         event.preventDefault();
 
         console.log(analyzedForm.text);
-
+        setAnalyzedText(analyzedForm.text)
         getAnalyzed(analyzedForm.text).then(response => {
             console.log(response)
+            for (let i = 0; i < response.length; i++) {
+                let rs = response[i]
+                // analyzedText.replace(rs, <EntityHighlight data={}/>)
+            }
+
             //setAnalyzedForm(response)
         }).then(() => setLoading(false))
         
@@ -70,7 +126,7 @@ const TextAnalyzer: NextPage = () => {
                         </Flex>
                         <Flex  flexDirection="column" pt={5} pl={5} pr={5} border="2px solid #38393E" borderRadius="10px" ml={5} height="400px" width="50%" bg="#202125">
                             <Text mb={4} fontWeight={800} fontSize="14pt" color="white">Analyzed Text</Text>
-                            <Text fontSize="14pt" fontWeight={700} color="#616aee">FILLER</Text>
+                            <Text fontSize="14pt" fontWeight={700} color="#616aee"><ResponseRender fullText={analyzedText} entities={entityArr}/></Text>
                         </Flex>
                     </Flex>
                     <Button isLoading={loading} type="submit" _hover={{ bg: "#5f40f7" }} height="45px" bg="#616aee" color="white" ml="43px" width="155px">Generate Analogy</Button>
