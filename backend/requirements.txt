@@ -4,3 +4,9 @@ tensorflow
 keras
 torch
 sklearn
+spacy
+fastapi
+uvicorn[standard]
+pydantic
+openai
+transformers

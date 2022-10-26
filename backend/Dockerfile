@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT [ "python", "main.py" ]
+ENTRYPOINT [ "uvicorn", "main:app", "--reload" ]
