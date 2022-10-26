@@ -83,7 +83,7 @@ def analogy_endpoint(item: AnalogyItem):
     return {"analogy": analogy}
 
 
-@app.get("/rewording")
+@app.post("/rewording")
 def get_rewording(audience: int, text: Union[str, None] = None):
     if text:
         reworded_text = reword(audience, text)
