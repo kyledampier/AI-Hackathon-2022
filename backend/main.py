@@ -5,7 +5,7 @@ from fastapi import FastAPI # File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from ner import extractEntities
+from ner import extractAndDefineEntities
 
 app = FastAPI()
 
@@ -27,10 +27,10 @@ def index():
 from typing import Union
 
 
-@app.get("/ner/entities")
+@app.get("/ner")
 def get_ents(text: Union[str, None] = None):
     if text:
-        entities = extractEntities(text)
+        entities = extractAndDefineEntities(text)
     return {"entities": entities}
 
 
