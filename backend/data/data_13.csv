@@ -1,0 +1,29 @@
+Country,Code,ContinentCode,Year,Gini income inequality index,Poverty percent of population,Percent income earned by the top 10 percent of earners
+Argentina,ARG,SA,2020,42.3,42,30.3
+Armenia,ARM,AS,2020,25.2,27,21.5
+Belarus,BLR,EU,2020,24.4,4.8,20.7
+Bolivia,BOL,SA,2020,43.6,39,32.6
+Brazil,BRA,SA,2020,48.9,,39.4
+Chile,CHL,SA,2020,44.9,10.8,35.8
+China,CHN,AS,2020,,0,
+Colombia,COL,SA,2020,54.2,42.5,42.2
+Costa Rica,CRC,NA,2020,49.3,30,37
+Dominican Republic,DOM,NA,2020,39.6,,30.5
+Ecuador,ECU,SA,2020,47.3,33,36
+El Salvador,SLV,NA,2020,,26.2,
+Georgia,GEO,AS,2020,34.5,21.3,26.2
+Indonesia,IDN,AS,2020,37,9.8,29
+Kazakhstan,KAZ,AS,2020,,5.3,
+Kiribati,KIR,OC,2020,,21.9,
+Kyrgyzstan,KGZ,AS,2020,29,25.3,24
+Mali,MLI,AF,2020,,41.9,
+Mexico,MEX,NA,2020,45.4,43.9,35.5
+Moldova,MDA,EU,2020,,26.8,
+Mongolia,MNG,AS,2020,,27.8,
+Paraguay,PRY,SA,2020,43.5,26.9,33.3
+Peru,PER,SA,2020,43.8,30.1,32.9
+Russia,RUS,EU,2020,36,12.1,29
+Thailand,THA,AS,2020,35,6.8,27
+Ukraine,UKR,EU,2020,25.6,,21.8
+Uruguay,URY,SA,2020,40.2,11.6,29.9
+Vanuatu,VUT,OC,2020,,15.9,

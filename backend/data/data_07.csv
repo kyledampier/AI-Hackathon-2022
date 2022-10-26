@@ -1,0 +1,193 @@
+Country,Code,ContinentCode,Year,Oil consumption thousand barrels per day
+Afghanistan,AFG,AS,2014,130
+Albania,ALB,EU,2014,27
+Algeria,DZA,AF,2014,430
+Angola,AGO,AF,2014,132
+Antigua and Barbuda,ATG,NA,2014,5
+Argentina,ARG,SA,2014,751
+Armenia,ARM,AS,2014,8
+Aruba,ABW,NA,2014,7.5
+Australia,AUS,OC,2014,1111
+Austria,AUT,EU,2014,261
+Azerbaijan,AZE,AS,2014,104
+Bahamas,BHS,NA,2014,24
+Bahrain,BHR,AS,2014,55
+Bangladesh,BGD,AS,2014,109
+Barbados,BRB,NA,2014,12
+Belarus,BLR,EU,2014,170
+Belgium,BEL,EU,2014,619
+Belize,BLZ,NA,2014,3.7
+Benin,BEN,AF,2014,41
+Bermuda,BMU,NA,2014,3.3
+Bhutan,BTN,AS,2014,3
+Bolivia,BOL,SA,2014,78
+Bosnia and Herzegovina,BIH,EU,2014,30
+Botswana,BWA,AF,2014,23
+Brazil,BRA,SA,2014,3144
+Brunei,BRN,AS,2014,18
+Bulgaria,BGR,EU,2014,84
+Burkina Faso,BFA,AF,2014,22
+Burma (Myanmar),MMR,AS,2014,61
+Burundi,BDI,AF,2014,1.5
+Cambodia,KHM,AS,2014,36
+Cameroon,CMR,AF,2014,43
+Canada,CAN,NA,2014,2407
+Cape Verde,CPV,AF,2014,6
+Central African Republic,CAF,AF,2014,3
+Chad,TCD,AF,2014,2.2
+Chile,CHL,SA,2014,337
+China,CHN,AS,2014,11552.7
+Colombia,COL,SA,2014,299
+Comoros,COM,AF,2014,1.3
+Costa Rica,CRC,NA,2014,53
+Croatia,HRV,EU,2014,70
+Cuba,CUB,NA,2014,178
+Cyprus,CYP,EU,2014,45
+Czechia,CZE,EU,2014,200
+Democratic Republic of the Congo,COD,AF,2014,24
+Denmark,DNK,EU,2014,154
+Djibouti,DJI,AF,2014,6
+Dominica,DMA,NA,2014,1
+Dominican Republic,DOM,NA,2014,116
+Ecuador,ECU,SA,2014,282
+Egypt,EGY,AF,2014,797
+El Salvador,SLV,NA,2014,45
+Equatorial Guinea,GNQ,AF,2014,5.2
+Eritrea,ERI,AF,2014,3.5
+Estonia,EST,EU,2014,29
+Ethiopia,ETH,AF,2014,61
+Faroe Islands,FRO,EU,2014,4.4
+Fiji,FJI,OC,2014,16
+Finland,FIN,EU,2014,193
+France,FRA,EU,2014,1692
+Gabon,GAB,AF,2014,19
+Gambia,GMB,AF,2014,3.5
+Georgia,GEO,AS,2014,20
+Germany,DEU,EU,2014,2374
+Ghana,GHA,AF,2014,83
+Gibraltar,GIB,EU,2014,80
+Greece,GRC,EU,2014,284
+Grenada,GRD,NA,2014,2.3
+Guatemala,GTM,NA,2014,74
+Guinea,GIN,AF,2014,16
+Guinea-Bissau,GNB,AF,2014,2.5
+Guyana,GUY,SA,2014,13
+Haiti,HTI,NA,2014,18
+Honduras,HND,NA,2014,53
+Hong Kong,HKG,AS,2014,353
+Hungary,HUN,EU,2014,145
+Iceland,ISL,EU,2014,16
+India,IND,AS,2014,3735
+Indonesia,IDN,AS,2014,1688
+Iran,IRN,AS,2014,1952
+Iraq,IRQ,AS,2014,807
+Ireland,IRL,EU,2014,139
+Israel,ISR,AS,2014,221
+Italy,ITA,EU,2014,1266
+Ivory Coast,CIV,AF,2014,38
+Jamaica,JAM,NA,2014,53
+Japan,JPN,AS,2014,4267
+Jordan,JOR,AS,2014,146
+Kazakhstan,KAZ,AS,2014,267
+Kenya,KEN,AF,2014,92
+Kiribati,KIR,OC,2014,0.4
+Kuwait,KWT,AS,2014,453
+Kyrgyzstan,KGZ,AS,2014,37
+Laos,LAO,AS,2014,3.5
+Latvia,LVA,EU,2014,35
+Lebanon,LBN,AS,2014,143
+Lesotho,LSO,AF,2014,5
+Liberia,LBR,AF,2014,6.6
+Libya,LBY,AF,2014,255
+Lithuania,LTU,EU,2014,54
+Luxembourg,LUX,EU,2014,57
+Macao,MAC,AS,2014,11
+Madagascar,MDG,AF,2014,15
+Malawi,MWI,AF,2014,7
+Malaysia,MYS,AS,2014,745
+Maldives,MDV,AS,2014,11
+Mali,MLI,AF,2014,7.5
+Malta,MLT,EU,2014,41
+Mauritania,MRT,AF,2014,16
+Mauritius,MUS,AF,2014,25
+Mexico,MEX,NA,2014,2040
+Moldova,MDA,EU,2014,17
+Mongolia,MNG,AS,2014,28
+Montenegro,MNE,EU,2014,6
+Montserrat,MSR,NA,2014,0.6
+Morocco,MAR,AF,2014,296
+Mozambique,MOZ,AF,2014,19
+Namibia,NAM,AF,2014,24
+Nepal,NPL,AS,2014,27
+Netherlands,NLD,EU,2014,991
+New Caledonia,NCL,OC,2014,17
+New Zealand,NZL,OC,2014,157
+Nicaragua,NIC,NA,2014,30
+Niger,NER,AF,2014,14
+Nigeria,NGA,AF,2014,277
+North Korea,PRK,AS,2014,17
+North Macedonia,MKD,EU,2014,20
+Norway,NOR,EU,2014,211
+Oman,OMN,AS,2014,160
+Pakistan,PAK,AS,2014,450
+Palestine,PS,AS,2014,16
+Panama,PAN,NA,2014,136
+Papua New Guinea,PNG,OC,2014,42
+Paraguay,PRY,SA,2014,36
+Peru,PER,SA,2014,229
+Philippines,PHL,AS,2014,329
+Poland,POL,EU,2014,506
+Portugal,PRT,EU,2014,234
+Puerto Rico,PRI,NA,2014,134
+Qatar,QAT,AS,2014,238
+Republic of the Congo,COG,AF,2014,16
+Romania,ROU,EU,2014,192
+Russia,RUS,EU,2014,3693
+Rwanda,RWA,AF,2014,6
+Saint Lucia,LCA,NA,2014,3.1
+Saint Vincent and the Grenadines,VCT,NA,2014,1.6
+Samoa,WSM,OC,2014,1.1
+Sao Tome and Principe,STP,AF,2014,1
+Saudi Arabia,SAU,AS,2014,3141
+Senegal,SEN,AF,2014,41
+Serbia,SRB,EU,2014,74
+Seychelles,SYC,AF,2014,6.5
+Sierra Leone,SLE,AF,2014,7.5
+Singapore,SGP,AS,2014,1292
+Slovakia,SVK,EU,2014,74
+Slovenia,SVN,EU,2014,50
+Solomon Islands,SLB,OC,2014,1.6
+Somalia,SOM,AF,2014,5.7
+South Africa,ZAF,AF,2014,663
+South Korea,KOR,AS,2014,2348
+Spain,ESP,EU,2014,1200
+Sri Lanka,LKA,AS,2014,98
+Sudan,SDN,AF,2014,108
+Suriname,SUR,SA,2014,17
+Swaziland,SWZ,AF,2014,5
+Sweden,SWE,EU,2014,305
+Switzerland,CHE,EU,2014,230
+Syria,SYR,AS,2014,165
+Taiwan,TWN,AS,2014,937
+Tajikistan,TJK,AS,2014,14
+Tanzania,TZA,AF,2014,58
+Thailand,THA,AS,2014,1221
+Togo,TGO,AF,2014,13
+Tonga,TON,OC,2014,1.5
+Trinidad and Tobago,TTO,NA,2014,56
+Tunisia,TUN,AF,2014,89
+Turkey,TUR,EU,2014,765
+Turkmenistan,TKM,AS,2014,145
+Uganda,UGA,AF,2014,27
+Ukraine,UKR,EU,2014,257
+United Arab Emirates,ARE,AS,2014,744
+United Kingdom,GBR,EU,2014,1520
+Uruguay,URY,SA,2014,59
+USA,USA,NA,2014,19106
+Uzbekistan,UZB,AS,2014,64
+Vanuatu,VUT,OC,2014,1
+Venezuela,VEN,SA,2014,776
+Vietnam,VNM,AS,2014,392
+Yemen,YEM,AS,2014,140
+Zambia,ZMB,AF,2014,19
+Zimbabwe,ZWE,AF,2014,29
