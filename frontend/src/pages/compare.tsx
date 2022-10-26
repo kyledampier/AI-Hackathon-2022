@@ -75,23 +75,43 @@ const Test: NextPage = () => {
     }
 
     const handleRemoveColumn = (e : React.ChangeEvent<HTMLFormElement>) => {
-        console.log(e.target)
-        let val = e.target.key as string
-        val = val.replace("col_", "")
+        let val = e.target.innerHTML as string
         const tmp = [... selectedColumns] as Array<string>
-        tmp.splice(tmp.indexOf(val.replace("col_", "")), 1)
+        tmp.splice(tmp.indexOf(val.replace("col-", "")), 1)
         callBackend(selectedCountries, tmp)
     }
+
+    const handleRemoveCountry = (e : any) => {
+        let val = e.target.innerHTML as string
+        console.log(val)
+        const tmp = [... selectedCountries] as Array<string>
+        for (let i = 0; i < tmp.length; i++) {
+            console.log(tmp[i])
+            if (tmp[i] === val) {
+                tmp.splice(i, 1)
+                break
+            }
+        }
+        callBackend(tmp, selectedColumns)
+    }
+
     
     return (
         <div>
+            <Flex ml="auto" w={400}>
+                <Select placeholder='Add Comparison' bg="lightgray" color="black" onChange={handleSelectColumn} variant='filled' ml={3} mr={5}>
+                    {columnOptions.map((col) => (
+                        <option key={"select-" + col} value={col}>{col}</option>
+                    ))}
+                </Select>
+            </Flex>
             <Flex justifyContent="center" m={5}>
                 <Table>
                     <Thead>
                         <Tr>
                             <Th>Country</Th>
                             {selectedColumns.map((col) => (
-                                <Th key={'col_' + col} onClick={handleRemoveColumn}>{col}</Th>
+                                <Th key={'col-' + col} onClick={handleRemoveColumn} _hover={{ backgroundColor: "red.400"}}>{col}</Th>
                             ))}
                         </Tr>
                     </Thead>
@@ -99,7 +119,7 @@ const Test: NextPage = () => {
 
                         {tableData.map((value) => (
                             <Tr key={"row-" + value.Country}>
-                                <Td>{value['Country']}</Td>
+                                <Td onClick={handleRemoveCountry} _hover={{ backgroundColor: "red.600"}}>{value.Country}</Td>
                                 {selectedColumns.map((col) => (
                                     <Td key={col + '-' + value['Country']}>{value[col]}</Td>
                                 ))}
@@ -110,11 +130,6 @@ const Test: NextPage = () => {
                         </Tr>
                     </Tbody>
                 </Table>
-                <Select placeholder='Add Comparison' bg="lightgray" color="black" onChange={handleSelectColumn} variant='filled' ml={3} mr={3}>
-                    {columnOptions.map((col) => (
-                        <option key={"select-" + col} value={col}>{col}</option>
-                    ))}
-                </Select>
             </Flex>
             <Box w={400} m={5}>
                 <Select placeholder='Select Country' bg="white" color="black" onChange={handleSelectCountry}>
