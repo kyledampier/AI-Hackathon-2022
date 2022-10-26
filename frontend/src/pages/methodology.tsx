@@ -1,8 +1,9 @@
 import { Flex, Text } from '@chakra-ui/react'
 import type { NextPage } from 'next'
-import { SiIpfs } from 'react-icons/si'
+import { MdOutlineDashboard } from 'react-icons/md'
+import { AiOutlinePartition } from 'react-icons/ai'
 
-const AnalogyGenerator: NextPage = () => {
+const Methodology: NextPage = () => {
   return (
     <Flex justifyContent='center'>
       <Flex width="100%" maxWidth="1200px" bgColor="#212427" flexDirection='column'>
@@ -10,8 +11,8 @@ const AnalogyGenerator: NextPage = () => {
             
             <Flex p={0} borderRadius="12px" border="2px solid #38393E" flexDirection="column" height="700px" bg="#2B2C31">
                 <Flex p={2.5} borderTopRadius="10px" height="40px" bg="#202125">
-                    <Text color="white" fontWeight={800} align="center"><SiIpfs /></Text>
-                    <Text ml={1.5} mt={-1} fontWeight={800} color="white">Analogy Generator</Text>
+                    <Text color="white" fontWeight={800} align="center"><AiOutlinePartition /></Text>
+                    <Text ml={1.5} mt={-1} fontWeight={800} color="white">Methodology</Text>
                 </Flex>
                 <Flex flexDir="column" p={5} pl={6} pr={3} flexDirection="row" width="100%">
                     <Text fontWeight={800} color="white">Educatus is a versatile, flexible dashboard of educator tools. Join us in the new paradigm of academia transfused with ai solutions</Text>
@@ -26,4 +27,4 @@ const AnalogyGenerator: NextPage = () => {
   )
 }
 
-export default AnalogyGenerator;
+export default Methodology

@@ -76,7 +76,7 @@ const Dashboard:React.FC = () => {
                         <MenuList border="2px solid #38393E" bg="#202125" borderRadius="8px">
                                 <MenuItem onClick={()=>addToQue(1)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}} color="white"><VscSymbolString /> &nbsp;&nbsp;Reword Sentence</MenuItem>
                                 <MenuItem onClick={()=>addToQue(2)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}} color="white"><SiMoleculer /> &nbsp;&nbsp;Syntax Checker</MenuItem>
-                                <MenuItem onClick={()=>addToQue(3)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}}color="white"><SiIpfs /> &nbsp;&nbsp;QA Generation</MenuItem>
+                                <MenuItem onClick={()=>addToQue(3)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}}color="white"><SiIpfs /> &nbsp;&nbsp;Analogy Generator</MenuItem>
                                 <MenuItem onClick={()=>addToQue(4)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}}color="white"><SiCheckio /> &nbsp;&nbsp;Complexity Analysis</MenuItem>
                         </MenuList>
                     </Menu>
@@ -129,19 +129,21 @@ const Dashboard:React.FC = () => {
                                             <Flex ml={2} flexDirection="row" align="center" fontWeight={800}><SiMoleculer /> &nbsp;&nbsp;Syntax Checker</Flex>
                                             <Text onClick={()=>removeFromQue(value)} ml="auto" mt={1} mr={1} color="black" fontWeight={800} align="center"><IoCloseSharp /></Text>
                                         </Flex>
-                                        <Text fontWeight={800} ml={2} mt={2}>Test</Text>
-                                        
+                                        <Flex>
+                                            <Text fontWeight={800} ml={2} mt={2}>Test</Text>
+                                        </Flex>
                                     </Flex>
                                 )
                             } else if (value === 3) {
                                 return (
                                     <Flex key={value} mb={8} _hover={{cursor: 'pointer', border: "3px solid #38393E"}} borderRadius="8px" bg="white" width="31%" height="280px" flexDirection="column" mr={2.5} ml={2.5}>
                                         <Flex borderTopRadius="8px" flexDirection="row" height="32px" bg="#FEE79C" width="100%" p={1}>
-                                            <Flex ml={2} flexDirection="row" align="center" fontWeight={800}><SiIpfs /> &nbsp;&nbsp;QA Generation</Flex>
+                                            <Flex ml={2} flexDirection="row" align="center" fontWeight={800}><SiIpfs /> &nbsp;&nbsp;Analogy Generator</Flex>
                                             <Text onClick={()=>removeFromQue(value)} ml="auto" mt={1} mr={1} color="black" fontWeight={800} align="center"><IoCloseSharp /></Text>
                                         </Flex>
-                                        <Text fontWeight={800} ml={2} mt={2}>Test</Text>
-                                        
+                                        <Flex onClick={() => router.push('/analogygenerator')}>
+                                            <Text fontWeight={800} ml={2} mt={2}>Test</Text>
+                                        </Flex>
                                     </Flex>
                                 )
                             } else if (value === 4) {
