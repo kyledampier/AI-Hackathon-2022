@@ -1,25 +1,42 @@
 import { Button, Divider, Input, Text, Image, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../../atoms/authModalAtom";
+import { auth } from "../../../firebase/clientApp";
+import { FIREBASE_ERRORS } from "../../../firebase/error";
 
 const SignUp: React.FC = () => {
   const setAuthModalState = useSetRecoilState(authModalState);
 
-  const [loginForm, setLoginForm] = useState({
+  const [regForm, setRegForm] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    try {
+      createUserWithEmailAndPassword(regForm.email, regForm.password);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginForm((prev) => ({
+    setRegForm((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
   };
 
   return (
-    <form onSubmit={() => {}}>
+    <form onSubmit={onSubmit}>
       <Flex width="105%" flexDirection="column">
         <Flex align="center" flexDirection="row" justifyContent="center">
           <Image src="/images/educatus_mid.png" height="54px" width="54px" />
@@ -64,11 +81,28 @@ const SignUp: React.FC = () => {
           type="password"
           onChange={onChange}
         />
+        <Text fontWeight={900} color="white">
+          Confirm Password
+        </Text>
+        <Input
+          _placeholder={{ color: "#2B2C31" }}
+          _focus={{ border: "2px solid #616aee" }}
+          fontWeight={700}
+          color="white"
+          border="0px"
+          bg="#202125"
+          mb={2}
+          required
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          type="password"
+          onChange={onChange}
+        />
         {/* <Text textAlign='center' color='red' fontSize='10pt'>TODO Firebase error goes here</Text> */}
         <Button
           _focus={{ border: "2px solid #616aee" }}
           _loading={{ backgroundColor: "teal.400" }}
-          isLoading={false}
+          isLoading={loading}
           width="100%"
           height="36px"
           mt={2}
@@ -80,6 +114,12 @@ const SignUp: React.FC = () => {
         >
           Sign Up
         </Button>
+
+        <Text textAlign="center" color="red" fontSize="10pt">
+          {error
+            ? FIREBASE_ERRORS[error?.message as keyof typeof FIREBASE_ERRORS]
+            : ""}
+        </Text>
 
         <Flex justify="center">
           <Text
