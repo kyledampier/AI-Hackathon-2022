@@ -82,8 +82,8 @@ const Test: NextPage = () => {
     }
 
     const handleRemoveCountry = (e : any) => {
-        let val = e.target.innerHTML as string
-        console.log(val)
+        let val = e.target.id as string
+        val = val.replace("row-head-", "")
         const tmp = [... selectedCountries] as Array<string>
         for (let i = 0; i < tmp.length; i++) {
             console.log(tmp[i])
@@ -119,7 +119,7 @@ const Test: NextPage = () => {
 
                         {tableData.map((value) => (
                             <Tr key={"row-" + value.Country}>
-                                <Td onClick={handleRemoveCountry} _hover={{ backgroundColor: "red.600"}}>{value.Country}</Td>
+                                <Td onClick={handleRemoveCountry} _hover={{ backgroundColor: "red.600"}} id={"row-head-" + value.Code}>{value.Country}</Td>
                                 {selectedColumns.map((col) => (
                                     <Td key={col + '-' + value['Country']}>{value[col]}</Td>
                                 ))}
