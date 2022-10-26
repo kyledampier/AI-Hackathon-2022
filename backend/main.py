@@ -5,7 +5,7 @@ from fastapi import FastAPI # File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from ner import extractAndDefineEntities
+# from ner import extractAndDefineEntities
 from analogy import getAnalogy
 from rewording import reword
 
@@ -46,8 +46,8 @@ def analogy_endpoint(target: Union[str, None] = None, text: Union[str, None] = N
 @app.get("/rewording")
 def get_rewording(audience: int, text: Union[str, None] = None):
     if text:
-        reworded_text = reword(text, audience)
-    return {"reworded_text" : text}
+        reworded_text = reword(audience, text)
+    return {"reworded_text" : reworded_text}
 
 
 
