@@ -65,11 +65,6 @@ def get_columns():
     return out
 
 
-@app.post("/compare")
-def get_country(country_code: str):
-    return data[data['Code'] == country_code].to_dict(orient='records')[0]
-
-
 @app.post("/")
 def index():
     return {"message": "Hello Frontend"}
@@ -93,3 +88,17 @@ def get_rewording(audience: int, text: Union[str, None] = None):
     if text:
         reworded_text = reword(audience, text)
     return {"reworded_text": reworded_text}
+
+
+class CompareItem(BaseModel):
+    country_codes: list
+    columns: list
+
+
+@app.post("/compare")
+def compare_endpoint(request: CompareItem):
+    country_codes = request.country_codes
+    columns = request.columns + ['Country', 'Code', 'ContinentCode']
+    df = data[data['Code'].isin(country_codes)]
+    df = df[columns]
+    return df.fillna('').to_dict(orient='records')
