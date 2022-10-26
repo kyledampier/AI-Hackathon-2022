@@ -141,8 +141,8 @@ const Dashboard:React.FC = () => {
                                             <Flex ml={2} flexDirection="row" align="center" fontWeight={800}><SiIpfs /> &nbsp;&nbsp;Analogy Generator</Flex>
                                             <Text onClick={()=>removeFromQue(value)} ml="auto" mt={1} mr={1} color="black" fontWeight={800} align="center"><IoCloseSharp /></Text>
                                         </Flex>
-                                        <Flex onClick={() => router.push('/analogygenerator')}>
-                                            <Text fontWeight={800} ml={2} mt={2}>Test</Text>
+                                        <Flex mt={1} mr={1} onClick={() => router.push('/analogygenerator')}>
+                                            <Text fontWeight={500} ml={2} mt={2}>Given a topic and a piece of text, the analogy generator attempts to explain the topics relationship using an analogy</Text>
                                         </Flex>
                                     </Flex>
                                 )
