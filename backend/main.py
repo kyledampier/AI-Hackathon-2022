@@ -5,9 +5,12 @@ from fastapi import FastAPI # File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-# from ner import extractAndDefineEntities
+from ner import extractAndDefineEntities
 from analogy import getAnalogy
 from rewording import reword
+from codecomplexity import complexity
+
+from typing import Union
 
 openai_api_key = os.environ.get('OPENAI_API_KEY')
 
@@ -28,7 +31,6 @@ app.add_middleware(
 def index():
     return {"message": "Hello Frontend"}
 
-from typing import Union
 
 
 @app.get("/ner")
@@ -50,5 +52,9 @@ def get_rewording(audience: int, text: Union[str, None] = None):
     return {"reworded_text" : reworded_text}
 
 
-
+@app.get("/code")
+def get_computational_complexity(code: Union[str, None] = None):
+    if code:
+        comp = complexity(code)
+    return {"complexity" : comp}
 
