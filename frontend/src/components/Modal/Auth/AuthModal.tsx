@@ -10,17 +10,19 @@ import {
   ModalFooter,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { BsPersonSquare } from "react-icons/bs";
 // import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRecoilState } from "recoil";
 import { authModalState } from "../../../atoms/authModalAtom";
+import { auth } from "../../../firebase/clientApp";
 // import { auth } from '../../../firebase/clientApp';
 import AuthInputs from "./AuthInputs";
 // import ResetPassword from './ResetPassword';
 
 const AuthModal: React.FC = () => {
   const [modalState, setModalState] = useRecoilState(authModalState);
-  //   const [user, loading, error] = useAuthState(auth)
+  const [user, loading, error] = useAuthState(auth);
 
   const handleClose = () => {
     setModalState((prev) => ({
@@ -29,9 +31,9 @@ const AuthModal: React.FC = () => {
     }));
   };
 
-  //   useEffect(() => {
-  //     if (user) handleClose()
-  //   }, [user])
+  useEffect(() => {
+    if (user) handleClose();
+  }, [user]);
 
   return (
     <>
