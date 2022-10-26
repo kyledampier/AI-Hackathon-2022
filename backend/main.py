@@ -7,6 +7,8 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from ner import extractEntities
 
+openai_api_key = os.environ.get('OPENAI_API_KEY')
+
 app = FastAPI()
 
 origins = [
