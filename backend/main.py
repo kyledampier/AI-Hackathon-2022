@@ -7,6 +7,8 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from ner import extractAndDefineEntities
 from analogy import getAnalogy
+from rewording import reword
+
 openai_api_key = os.environ.get('OPENAI_API_KEY')
 
 app = FastAPI()
@@ -40,6 +42,12 @@ def entity_endpoint(text: Union[str, None] = None):
 def analogy_endpoint(target: Union[str, None] = None, text: Union[str, None] = None):
     analogy = getAnalogy(target, text)
     return {"analogy": analogy}
+
+@app.get("/rewording")
+def get_rewording(audience: int, text: Union[str, None] = None):
+    if text:
+        reworded_text = reword(text, audience)
+    return {"reworded_text" : text}
 
 
 
