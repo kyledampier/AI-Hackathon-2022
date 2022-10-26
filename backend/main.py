@@ -5,14 +5,10 @@ from fastapi import FastAPI # File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-<<<<<<< Updated upstream
-=======
 from typing import Union
->>>>>>> Stashed changes
 from ner import extractAndDefineEntities
 from analogy import getAnalogy
 from rewording import reword
-from codecomplexity import complexity
 
 from typing import Union
 
@@ -42,37 +38,24 @@ class AnalogyItem(BaseModel):
     target: Union[str, None] = None
     text: Union[str, None] = None
 
-@app.get("/")
+@app.post("/")
 def index():
     return {"message": "Hello Frontend"}
 
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
-@app.get("/ner")
+@app.post("/ner")
 def entity_endpoint(item: NERItem):
     if item.text:
         entities = extractAndDefineEntities(item.text)
     return {"entities": entities}
 
 
-@app.get("/analogy")
+@app.post("/analogy")
 def analogy_endpoint(item: AnalogyItem):
     analogy = getAnalogy(item.target, item.text)
     return {"analogy": analogy}
 
-@app.get("/rewording")
+@app.post("/rewording")
 def get_rewording(item: RewordingItem):
     if item.text:
         reworded_text = reword(item.audience, item.text)
     return {"reworded_text" : reworded_text}
-
-
-@app.get("/code")
-def get_computational_complexity(code: Union[str, None] = None):
-    if code:
-        comp = complexity(code)
-    return {"complexity" : comp}
-
