@@ -5,7 +5,6 @@ nlp = spacy.load("en_core_web_lg")
 
 
 
-
 def wikiExplainer(title, removeEscapeChars=True, explainerLength=3):
     title = str(title)
     response = requests.get(
@@ -28,7 +27,7 @@ def wikiExplainer(title, removeEscapeChars=True, explainerLength=3):
             explainer = ''.join(c for c in explainer if c.isalnum() or c == ' ' or c == '.')
             explainer = explainer.replace("\n", " ")
     else:
-        explainer = ""
+        explainer = "No Definition Found"
 
     doc = nlp(explainer)
     explainer = ""
@@ -37,6 +36,8 @@ def wikiExplainer(title, removeEscapeChars=True, explainerLength=3):
             break
         else:
             explainer += str(sentence.text) + " "
+    if "may refer to" in explainer:
+        return "Various Definitions"
     return explainer
 
 
@@ -46,16 +47,20 @@ def extractAndDefineEntities(text):
     exclusionList = [ 'TIME', 'DATE', 'CARDINAL', 'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'NORP']
     doc = nlp(text)
     entities = []
+    ent_set = set()
     if doc.ents:
         for ent in doc.ents:
             if ent.label_  in exclusionList:
                 pass
             else:
-                s = wikiExplainer(ent.text)
-                pkg = [ ent.text,str(spacy.explain(ent.label_)), s]
-                entities.append(pkg)
+                if ent.text not in ent_set:
+                    ent_set.add(ent.text)
+                    s = wikiExplainer(ent.text)
+                    pkg = [ ent.text,str(spacy.explain(ent.label_)), s]
+                    entities.append(pkg)
+                
+
     if entities:
         return entities
     else:
         return 0
-
