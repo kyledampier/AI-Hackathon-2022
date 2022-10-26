@@ -13,10 +13,12 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@fontsource/nunito-sans": "^4.5.10",
+    "firebase": "^9.12.1",
     "framer-motion": "^7.6.1",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-firebase-hooks": "^5.0.3",
     "react-icons": "^4.6.0",
     "recoil": "^0.7.6"
   },
