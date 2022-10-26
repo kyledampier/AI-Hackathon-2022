@@ -13,11 +13,11 @@ prompts = {
     3: "Summarize this for a 20 year old college student.",
 }
 
-def reword(text, audience, printOn=False):
+def reword(audience, text, printOn=False):
     """
     params:
-    text = text to reword
     audience = [1, 2, 3]; audience level, maps to the appropriate prompt
+    text = text to reword
 
     returns:
     response_text
@@ -34,4 +34,6 @@ def reword(text, audience, printOn=False):
         print(response)
         print(response["choices"][0]["text"])
 
-    return response["choices"][0]["text"]
+    reworded_text = response["choices"][0]["text"]
+    reworded_text  = reworded_text.replace('\n', '')
+    return reworded_text
