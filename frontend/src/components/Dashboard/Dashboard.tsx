@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import { Box, Button, Flex, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, useToast } from '@chakra-ui/react';
+import { Tooltip, Box, Button, Flex, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, useToast } from '@chakra-ui/react';
 import { VscSymbolString } from 'react-icons/vsc';
 import { SiMoleculer, SiIpfs, SiCheckio } from 'react-icons/si';
-import { MdOutlineDashboard, MdLayersClear } from 'react-icons/md';
+import { MdOutlineDashboard, MdLayersClear, MdCompareArrows } from 'react-icons/md';
 import { IoAdd, IoCloseSharp } from 'react-icons/io5';
 import { GiGears } from 'react-icons/gi';
-import { useRecoilState } from 'recoil';
+import { constSelector, useRecoilState } from 'recoil';
 import { dashboardQueState } from '../../atoms/dashboardQueAtom';
 import router from 'next/router';
+import { HiInformationCircle } from 'react-icons/hi'
 
 const Dashboard:React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -67,7 +68,7 @@ const Dashboard:React.FC = () => {
                     <Text ml={1.5} mt={-1} fontWeight={800} color="white">Dashboard</Text>
                     <Menu>
                         <MenuButton ml="auto">
-                            <Box onClick={() => addToQue(1)} _hover={{cursor: 'pointer'}} mt={-1} borderRadius="10px" ml="auto" border="2px solid #38393E" height="25px" width="120px">
+                            <Box _hover={{cursor: 'pointer'}} mt={-1} borderRadius="10px" ml="auto" border="2px solid #38393E" height="25px" width="120px">
                                 <Text ml={3} mt={0.5} color="white" fontWeight={800} align="center"><IoAdd /> </Text>
                                 <Text  ml={8} mt={-5} fontWeight={800} color="white" mr={2}>Add Tool</Text>
 
@@ -75,9 +76,10 @@ const Dashboard:React.FC = () => {
                         </MenuButton>
                         <MenuList border="2px solid #38393E" bg="#202125" borderRadius="8px">
                                 <MenuItem onClick={()=>addToQue(1)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}} color="white"><VscSymbolString /> &nbsp;&nbsp;Reword Sentence</MenuItem>
-                                <MenuItem onClick={()=>addToQue(2)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}} color="white"><SiMoleculer /> &nbsp;&nbsp;Syntax Checker</MenuItem>
+                                <MenuItem onClick={()=>addToQue(2)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}} color="white"><SiMoleculer /> &nbsp;&nbsp;Text Analyzer</MenuItem>
                                 <MenuItem onClick={()=>addToQue(3)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}}color="white"><SiIpfs /> &nbsp;&nbsp;Analogy Generator</MenuItem>
                                 <MenuItem onClick={()=>addToQue(4)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}}color="white"><SiCheckio /> &nbsp;&nbsp;Complexity Analysis</MenuItem>
+                                <MenuItem onClick={()=>addToQue(5)} _focus={{}} _hover={{bg: "#202125", color: '#616aee'}}color="white"><MdCompareArrows />&nbsp;&nbsp;Compare Country</MenuItem>
                         </MenuList>
                     </Menu>
                     <Box onClick={onOpen} _hover={{cursor: 'pointer'}} borderRadius="10px" ml={3} border="2px solid #38393E" height="25px" width="85px" mt={-1} pl={3}>
@@ -126,11 +128,17 @@ const Dashboard:React.FC = () => {
                                 return (
                                     <Flex key={value} mb={8} _hover={{cursor: 'pointer', border: "3px solid #38393E"}} borderRadius="8px"  bg="white" width="31%" height="280px" flexDirection="column" mr={2.5} ml={2.5}>
                                         <Flex borderTopRadius="8px" flexDirection="row" height="32px" bg="#F2C4C3" width="100%" p={1}>
-                                            <Flex ml={2} flexDirection="row" align="center" fontWeight={800}><SiMoleculer /> &nbsp;&nbsp;Syntax Checker</Flex>
+                                            <Flex ml={2} flexDirection="row" align="center" fontWeight={800}><SiMoleculer /> &nbsp;&nbsp;Text Analyzer</Flex>
                                             <Text onClick={()=>removeFromQue(value)} ml="auto" mt={1} mr={1} color="black" fontWeight={800} align="center"><IoCloseSharp /></Text>
                                         </Flex>
-                                        <Flex>
-                                            <Text fontWeight={800} ml={2} mt={2}>Test</Text>
+                                        <Flex mt={1} mr={1} onClick={() => router.push('/textanalyzer')}>
+                                            <Text ml={2} mt={2} mr={2}>The text analyzer is an important tool for academic research, as it can help to identify and define the most important topics within a text.</Text>
+                                        </Flex>
+                                        <Flex flexDirection="row" justifyContent="center" borderRadius="15px" pl={1} pr={1} pt={1} pb={1} mt="auto" bg="red.100" width="155px" mb={4} ml={3}>
+                                            <Text align="center" fontWeight={700} fontSize="11pt" color="red.700">Quality Education</Text>
+                                            <Tooltip label='Hover me'>
+                                                <Text ml={1} mt="-18px" align="center" fontWeight={700} fontSize="11pt" color="red.700">&nbsp;<HiInformationCircle/></Text>
+                                            </Tooltip>
                                         </Flex>
                                     </Flex>
                                 )
@@ -144,6 +152,12 @@ const Dashboard:React.FC = () => {
                                         <Flex mt={1} mr={1} onClick={() => router.push('/analogygenerator')}>
                                             <Text fontWeight={500} ml={2} mt={2}>Given a topic and a piece of text, the analogy generator attempts to explain the topics relationship using an analogy</Text>
                                         </Flex>
+                                        <Flex flexDirection="row" justifyContent="center" borderRadius="15px" pl={1} pr={1} pt={1} pb={1} mt="auto" bg="#fcf090" width="165px" mb={4} ml={3}>
+                                            <Text align="center" fontWeight={700} fontSize="11pt" color="yellow.700">Reduces Inequality</Text>
+                                            <Tooltip label='Hover me'>
+                                                <Text ml={1} mt="-18px" align="center" fontWeight={700} fontSize="11pt" color="yellow.700">&nbsp;<HiInformationCircle/></Text>
+                                            </Tooltip>
+                                        </Flex>
                                     </Flex>
                                 )
                             } else if (value === 4) {
@@ -155,6 +169,24 @@ const Dashboard:React.FC = () => {
                                         </Flex>
                                         <Text fontWeight={500} ml={2} mt={2}>Reconstruct sentences using simpler vocabulary for non-technical audiences.</Text>
                                         
+                                    </Flex>
+                                )
+                            } else if (value === 5) {
+                                return (  
+                                    <Flex key={value} mb={8} _hover={{cursor: 'pointer', border: "3px solid #38393E"}} borderRadius="8px" bg="white" width="31%" height="280px" flexDirection="column" mr={2.5} ml={2.5}>
+                                        <Flex borderTopRadius="8px" flexDirection="row" height="32px" bg="#c8b5ff" width="100%" p={1}>
+                                            <Flex ml={2} flexDirection="row" align="center" fontWeight={800}><MdCompareArrows /> &nbsp;Compare Country</Flex>
+                                            <Text onClick={()=>removeFromQue(value)} ml="auto" mt={1} mr={1} color="black" fontWeight={800} align="center"><IoCloseSharp /></Text>
+                                        </Flex>
+                                        <Flex mt={1} mr={1} onClick={() => router.push('/compare')}>
+                                            <Text fontWeight={500} ml={2} mt={2} mr={2}>Given a topic and a piece of text, the analogy generator attempts to explain the topics relationship using an analogy</Text>
+                                        </Flex>
+                                        <Flex flexDirection="row" justifyContent="center" borderRadius="15px" pl={1} pr={1} pt={1} pb={1} mt="auto" bg="purple.200" width="170px" mb={4} ml={3}>
+                                            <Text align="center" fontWeight={700} fontSize="10pt" color="purple.700">Health and Wellbeing</Text>
+                                            <Tooltip label='Hover me'>
+                                                <Text ml={1} mt="-18px" align="center" fontWeight={700} fontSize="11pt" color="purple.700">&nbsp;<HiInformationCircle/></Text>
+                                            </Tooltip>
+                                        </Flex>
                                     </Flex>
                                 )
                             }

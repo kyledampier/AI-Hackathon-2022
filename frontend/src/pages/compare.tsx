@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 import React, { useState, useEffect } from 'react'
-import { Flex, Text, Box, Button, Modal, Select } from '@chakra-ui/react'
-
+import { Flex, Box, Table, Thead, Tbody, Tr, Th, Td, Select, Text } from '@chakra-ui/react'
+import { MdCompareArrows } from 'react-icons/md'
+import router from 'next/router'
 const input_example = [
     {
         "country": "Afghanistan",
@@ -23,80 +24,164 @@ interface Country {
     ContinentCode: string
 }
 
-const Test: NextPage = () => {
+const Compare: NextPage = () => {
 
     const [countries, setCountries] = useState<Array<Country>>([])
     const [selectedCountries, setSelectedCountries] = useState<Array<string>>([])
+
     const [columnOptions, setColumnOptions] = useState<Array<string>>([])
     const [selectedColumns, setSelectedColumns] = useState<Array<string>>([])
+
+    const [tableData, setTableData] = useState<Array<any>>([])
 
     useEffect(() => {
         fetch("http://localhost:8080/countries").then(async (response) => {
             const columns = await fetch("http://localhost:8080/columns")
             const columnOptions = await columns.json()
+            const cntrys = await response.json()
+            setCountries(cntrys)
+            setColumnOptions(columnOptions)
+            callBackend(selectedCountries, selectedColumns)
+        })
+    }, [selectedCountries])
 
-            response.json().then((data) => {
-                setCountries(data)
-                setColumnOptions(columnOptions)
+    const callBackend = async (country_codes : Array<string>, cols: Array<string>) => {
+        const request = await fetch(`http://localhost:8080/compare`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            body: JSON.stringify({
+                'country_codes': country_codes,
+                'columns': cols
             })
         })
-    }, [])
+        const data = await request.json()
+        console.log(data)
+        setSelectedColumns(cols)
+        setSelectedCountries(country_codes)
+        setTableData(data)
+    }
 
     const handleSelectCountry = (e : React.ChangeEvent<HTMLFormElement>) => {
         const val = e.target.value as string;
-        const tmp = [... selectedCountries] as Array<string>
+        if (val in selectedCountries)
+            return
+        let tmp = [... selectedCountries] as Array<string>
         tmp.push(val)
-        setSelectedCountries(tmp)
+        callBackend(tmp, selectedColumns)
     }
 
     const handleSelectColumn = (e : React.ChangeEvent<HTMLFormElement>) => {
         const val = e.target.value as string;
+        if (val in selectedColumns)
+            return
         const tmp = [... selectedColumns] as Array<string>
         tmp.push(val)
-        setSelectedColumns(tmp)
+        callBackend(selectedCountries, tmp).then(() => { console.log("Updating table data") })
     }
-    
-    console.log(selectedCountries)
-    console.log(columnOptions)
-    return (
-        <div>
-            <Flex justifyContent="center" m={5}>
 
-                <table>
-                    <thead>
-                        <tr>
-                            {Object.keys(input_example[0]).map((key) => (
-                                <th>{key}</th>
-                            ))}
-                            <th> 
-                                <Select placeholder='Add Comparison' bg="lightgray" color="black" onChange={handleSelectColumn} variant='filled'>
-                                    {columnOptions.map((col) => (
-                                        <option key={col} value={col}>{col}</option>
-                                    ))}
-                                </Select>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr> 
-                            {Object.values(input_example[0]).map((value) => (
-                                <td>{value}</td>
-                            ))}
-                            <td> - </td>
-                        </tr>
-                        <tr>
-                            <Select placeholder='Select Country' bg="white" color="black" onChange={handleSelectCountry}>
-                                {countries.map((country) => (
-                                    <option key={country['Code']} value={country['Code']}>{country['Country']}</option>
-                                ))}
-                            </Select>
-                        </tr>
-                    </tbody>
-                </table>
+    const handleRemoveColumn = (e : any) => {
+        let val = e.target.innerHTML as string
+        const tmp = [... selectedColumns] as Array<string>
+        tmp.splice(tmp.indexOf(val.replace("col-", "")), 1)
+        callBackend(selectedCountries, tmp)
+    }
+
+    const handleRemoveCountry = (e : any) => {
+        let val = e.target.id as string
+        val = val.replace("row-head-", "")
+        const tmp = [... selectedCountries] as Array<string>
+        for (let i = 0; i < tmp.length; i++) {
+            console.log(tmp[i])
+            if (tmp[i] === val) {
+                tmp.splice(i, 1)
+                break
+            }
+        }
+        callBackend(tmp, selectedColumns)
+    }
+
+    
+    return (
+
+        <Flex justifyContent='center'>
+            <Flex width="100%" maxWidth="1200px" bgColor="#212427" flexDirection='column'>
+            <Flex mb={0} ml={1} mr={1} border="2px solid #38393E" flexDirection="column" pt={8} pl={10} pr={10} bg="#202125" height="780px" borderRadius="15px">
+                    
+                    <Flex p={0} borderRadius="12px" border="2px solid #38393E" flexDirection="column" height="700px" bg="#2B2C31">
+                        <Flex p={2.5} borderTopRadius="10px" height="40px" bg="#202125">
+                            <Text color="white" fontWeight={800} align="center"><MdCompareArrows /></Text>
+                            <Text ml={1.5} mt={-1} fontWeight={800} color="white">Compare Country</Text>
+                            <Box onClick={() => router.push('/')} _hover={{cursor: 'pointer'}} mt={-1} borderRadius="10px" ml="auto" border="2px solid #38393E" height="25px" width="180px">
+                                <Text  ml={2.5} mt={-0.5} fontWeight={800} color="white" mr={0}>← Back to Dashboard</Text>
+                            </Box>
+                        </Flex>
+                        <Flex flexDir="column" p={5} pl={6} pr={3} flexDirection="row" width="100%">
+                            <Text color="white" ml={5} mb={5}>Sample Summary</Text>
+                            
+
+                            <Flex ml={6} flexDirection="row" mb={4}>
+                                <Text color="white" fontWeight={800} fontSize="12pt">Add Country for comparison</Text>
+                                <Text ml="232px" mr={10} color="white" fontWeight={800} fontSize="12pt">Add Comparison Metric</Text>
+                            </Flex>
+                            
+                            <Flex flexDirection="row">
+                                
+                                <Box w={400} ml={5}>
+                                    <Select borderColor="#38393E" border="2px solid" _placeholder={{fontWeight: 'bold'}} bg="#202125" placeholder='Select Country' color="white" onChange={handleSelectCountry}>
+                                        {countries.map((country: any) => (
+                                            <option key={country['Code']} value={country['Code']}>{country['Country']}</option>
+                                        ))}
+                                    </Select>
+                                </Box>
+                                
+                                <Flex ml={5} w={400}>
+                                    <Select borderColor="#38393E" border="2px solid" placeholder='Add Comparison' bg="#202125" color="white" onChange={handleSelectColumn} ml={3} mr={5}>
+                                        {columnOptions.map((col) => (
+                                            <option key={"select-" + col} value={col}>{col}</option>
+                                        ))}
+                                    </Select>
+                                </Flex>
+
+                                
+                        </Flex>
+
+                            <Flex justifyContent="center" m={5}>
+                                <Table borderBottom="1px solid white">
+                                    <Thead bg="#202125">
+                                        <Tr>
+                                            <Th color="white" fontWeight={800}>Country</Th>
+                                            {selectedColumns.map((col) => (
+                                                <Th _hover={{cursor: 'pointer', backgroundColor: "red.400"}} color="white" fontWeight={800} key={'col-' + col} onClick={handleRemoveColumn}>{col}</Th>
+                                            ))}
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody>
+
+                                        {tableData.map((value) => (
+                                            <Tr key={"row-" + value.Country}>
+                                                <Td borderBottom="0px"  borderTop="1px" bg="#292a2e" onClick={handleRemoveCountry} _hover={{ backgroundColor: "red.400", cursor: 'pointer'}} id={"row-head-" + value.Code}>{value.Country}</Td>
+                                                {selectedColumns.map((col) => (
+                                                    <Td borderBottom="0px" borderTop="1px" bg="#292a2e" key={col + '-' + value['Country']}>{value[col]}</Td>
+                                                ))}
+                                            </Tr>
+                                        ))}
+                                        <Tr>
+                                            
+                                        </Tr>
+                                    </Tbody>
+                                </Table>
+                            </Flex>
+                            
+                                            
+                            </Flex>
+                            
+                        </Flex>
+                    </Flex>
+                </Flex>
             </Flex>
-        </div>
+
     )
 }
 
-export default Test
+export default Compare
 
