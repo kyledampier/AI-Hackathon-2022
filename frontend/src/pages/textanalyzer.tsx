@@ -11,58 +11,8 @@ const TextAnalyzer: NextPage = () => {
       });
     
     const [loading, setLoading] = useState(false)
-    const [analyzedText, setAnalyzedText] = useState('')
-    const [entityArr, setEntityArray] = useState([[]])
+    const [analyzedText, setAnalyzedText] = useState<Array<any>>([])
     
-    const ResponseRender  = (props : any) => {
-        const fullText = props['fullText']
-        const entities = props['entities']
-        const output: Array<any> = []
-
-        // for (let i = 0; i < entities.length; i++) {
-        //     rendered_entites.push(<EntityHighlight data={entities[i]}/>)
-        // }
-
-        for (let i = 0; i < entities.length; i++) {
-            let parts = []
-            if (output.length == 0) {
-                parts = fullText.split(entities[i][0])
-                for (let j = 0; j < parts.length - 1; j++) {
-                    output.push(parts[j])
-                    output.push(entities[i])
-                }
-                output.push(parts[parts.length - 1])
-            } else {
-                for (let k = 0; k < output.length; k++) {
-                    if (!(typeof output[k] == 'string'))
-                        continue
-                    parts = output[k].split(entities[i][0])
-                    for (let j = 0; j < parts.length - 1; j++) {
-                        output.push(parts[j])
-                        output.push(entities[i])
-                    }
-                    output.push(parts[parts.length - 1])
-                }
-            }
-            
-        }
-
-        console.log(output)
-
-        return (
-            <Text>
-                {output.map((ele : any) => ele)}
-            </Text>
-        )
-    }
-
-    function EntityHighlight(props : any) {
-        return (
-                <span>
-                    <Text color="purple" fontWeight={700}>{props['data'][0]}</Text>
-                </span>
-        )
-    }
     
     const getAnalyzed = async (text: string) => {
         const request = await fetch(`http://localhost:8080/ner`, {
@@ -82,13 +32,24 @@ const TextAnalyzer: NextPage = () => {
         event.preventDefault();
 
         console.log(analyzedForm.text);
-        setAnalyzedText(analyzedForm.text)
+        
         getAnalyzed(analyzedForm.text).then(response => {
-            console.log(response)
-            for (let i = 0; i < response.length; i++) {
-                let rs = response[i]
-                // analyzedText.replace(rs, <EntityHighlight data={}/>)
+            let out: any[] = [];
+            console.log(response.entities)
+            for (let i = 0; i < response.entities.length; i++) {
+                if (response.entities[i].startsWith('[') && response.entities[i].endsWith(']')) {
+                    out.push(JSON.parse(response.entities[i].replaceAll("'", "\"")))
+                    continue
+                }
+                out.push(response.entities[i])
             }
+            console.log(out)
+            setAnalyzedText(out)
+            // for (let i = 0; i < response.length; i++) {
+            //     let rs = response[i]
+            //     console.log(response[i])
+            //     // analyzedText.replace(rs, <EntityHighlight data={}/>)
+            // }
 
             //setAnalyzedForm(response)
         }).then(() => setLoading(false))
@@ -124,9 +85,17 @@ const TextAnalyzer: NextPage = () => {
                             <Text fontSize="13pt" color="white" fontWeight={700}>Text</Text>
                             <Textarea onChange={onChange} mb={5} name="text"  _placeholder={{ color: "#55586b" }} color="white" bg="#202125" required height="340px" _focus={{ border: "1.5px solid #616aee" }} isDisabled={false} placeholder='Enter text you want to analyze' />
                         </Flex>
-                        <Flex  flexDirection="column" pt={5} pl={5} pr={5} border="2px solid #38393E" borderRadius="10px" ml={5} height="400px" width="50%" bg="#202125">
+                        <Flex display="inline" overflow="scroll"  flexDirection="column" pt={5} pl={5} pr={5} border="2px solid #38393E" borderRadius="10px" ml={5} height="400px" width="50%" bg="#202125">
                             <Text mb={4} fontWeight={800} fontSize="14pt" color="white">Analyzed Text</Text>
-                            <Text fontSize="14pt" fontWeight={700} color="#616aee"><ResponseRender fullText={analyzedText} entities={entityArr}/></Text>
+                            
+                            {analyzedText.map((entity, index) => {
+                                if (typeof entity === "string") {
+                                    return <Text key={index} display="inline" color="white">{entity}</Text>
+                                } else {
+                                    return <Tooltip key={index}label={entity[2]}><Text  display="inline" color="purple">{entity[0]}</Text></Tooltip>
+                                }
+                            })}
+                            <Text fontSize="14pt" fontWeight={700} color="#616aee">Filler</Text>
                         </Flex>
                     </Flex>
                     <Button isLoading={loading} type="submit" _hover={{ bg: "#5f40f7" }} height="45px" bg="#616aee" color="white" ml="43px" width="155px">Generate Analogy</Button>

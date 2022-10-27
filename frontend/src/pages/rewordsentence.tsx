@@ -65,7 +65,7 @@ const RewordSentence: NextPage = () => {
               </Box>
             </Flex>
             <Flex flexDir="column" p={5} pl={6} pr={3} flexDirection="row" width="100%">
-              <Text fontWeight={800} color="white">
+              <Text ml={6} fontWeight={800} color="white">
                 Understanding technical text can be hard. We hope to simplify that using machine learning. Add some text, select the skill level that you want your text to be simplified (or enhanced!) and watch as your text is reconstructed using simpler vocabulary for non-technical audiences.
               </Text>
             </Flex>
@@ -79,7 +79,7 @@ const RewordSentence: NextPage = () => {
                 </Flex>
                 <Flex flexDirection="column" pt={5} pl={5} pr={5} border="2px solid #38393E" borderRadius="10px" ml={5} height="400px" width="50%" bg="#202125">
                   <Text mb={4} fontWeight={800} fontSize="14pt" color="white">
-                    Reworded Text
+                    Simplified Text
                   </Text>
                   <Text fontSize="14pt" fontWeight={700} color="#616aee">
                     {reword}
@@ -88,13 +88,13 @@ const RewordSentence: NextPage = () => {
               </Flex>
               <RadioGroup value={audience} ml="43px" mb={5} color={'white'} onChange={setAudience}>
                 <Stack direction={'row'} spacing={4}>
-                  <Radio value={'1'}>Beginner</Radio>
-                  <Radio value={'2'}>Intermediate</Radio>
-                  <Radio value={'3'}>Advanced</Radio>
+                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'1'}>Beginner</Radio>
+                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'2'}>Intermediate</Radio>
+                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'3'}>Advanced</Radio>
                 </Stack>
               </RadioGroup>
               <Button isLoading={loading} type="submit" _hover={{ bg: '#5f40f7' }} height="45px" bg="#616aee" color="white" ml="43px" width="155px">
-                Generate Analogy
+                Simplify Text
               </Button>
             </form>
           </Flex>

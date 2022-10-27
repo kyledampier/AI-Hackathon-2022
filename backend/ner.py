@@ -65,7 +65,7 @@ def extractAndDefineEntities(text):
                     ent_set.add(ent.text)
                     s = wikiExplainer(ent.text)
                     print('s',s)
-                    pkg = [ ent.text,str(spacy.explain(ent.label_)), s]
+                    pkg = [ ent.text,str(ent.label_), s]
                     entities.append(pkg)
                 
 

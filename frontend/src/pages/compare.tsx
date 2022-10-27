@@ -116,7 +116,7 @@ const Compare: NextPage = () => {
                             </Box>
                         </Flex>
                         <Flex flexDir="column" p={5} pl={6} pr={3} flexDirection="row" width="100%">
-                            <Text color="white" ml={5} mb={5}>Sample Summary</Text>
+                            <Text color="white" ml={5} mb={5} fontWeight={600}>The Compare Country widget uses data from the Global Economy database to compare over 200 countries in terms of their Happiness Index, GDP, Cost of Living Index, among 300+ other metrics. This enables users to get a broad sense of how countries rank in terms of the quality of life and environmental factors. Users can also compare individual countries side-by-side to see how they rank on specific metrics.</Text>
                             
 
                             <Flex ml={6} flexDirection="row" mb={4}>
