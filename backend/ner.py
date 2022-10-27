@@ -1,5 +1,6 @@
 import spacy
 import requests
+import re
 
 nlp = spacy.load("en_core_web_lg")
 
@@ -15,7 +16,9 @@ def wikiExplainer(title, removeEscapeChars=True, explainerLength=3):
             'titles': title,
             'prop': 'extracts',
             'exintro': True,
+            'exsentences': 5,
             'explaintext': True,
+            'exsectionformat': 'wiki'
         }).json()
     response = requests.get(
         "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&explaintext&exintro&titles=" + title.replace(
@@ -30,12 +33,7 @@ def wikiExplainer(title, removeEscapeChars=True, explainerLength=3):
         explainer = "No Definition Found"
 
     doc = nlp(explainer)
-    explainer = ""
-    for j, sentence in enumerate(doc.sents):
-        if (j + 1 > explainerLength):
-            break
-        else:
-            explainer += str(sentence.text) + " "
+
     if "may refer to" in explainer:
         return "Various Definitions"
     return explainer
@@ -56,11 +54,16 @@ def extractAndDefineEntities(text):
                 if ent.text not in ent_set:
                     ent_set.add(ent.text)
                     s = wikiExplainer(ent.text)
+                    print('s',s)
                     pkg = [ ent.text,str(spacy.explain(ent.label_)), s]
                     entities.append(pkg)
                 
 
     if entities:
+        for entity in entities:
+            indeces = [m.start() for m in re.finditer(entity[0],text)]
+            entity = entity.append(indeces)
+            
         return entities
     else:
         return 0
