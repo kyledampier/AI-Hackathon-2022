@@ -6,6 +6,8 @@ services:
     volumes:
       - ./frontend:/app
       - '/frontend/node_modules'
+    environment:
+      - HOST_PREFIX=http://localhost:8080
     depends_on:
       - backend
   backend:

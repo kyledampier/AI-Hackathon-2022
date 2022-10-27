@@ -5,6 +5,8 @@ import React, { Component, useState } from 'react';
 import { SiMoleculer } from 'react-icons/si'
 import { constSelector } from 'recoil';
 
+const HOST_PREFIX = process.env.HOST_PREFIX ?? 'http://localhost:8080'
+
 const TextAnalyzer: NextPage = () => {
     const [analyzedForm, setAnalyzedForm] = useState({
         text: "",
@@ -15,7 +17,7 @@ const TextAnalyzer: NextPage = () => {
     
     
     const getAnalyzed = async (text: string) => {
-        const request = await fetch(`http://localhost:8080/ner`, {
+        const request = await fetch(`${HOST_PREFIX}/ner`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
             body: JSON.stringify({

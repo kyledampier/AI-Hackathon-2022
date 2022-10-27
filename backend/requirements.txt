@@ -11,3 +11,4 @@ pydantic
 openai
 transformers
 python-dotenv
+reportlab
