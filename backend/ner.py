@@ -70,20 +70,16 @@ def extractAndDefineEntities(text):
                 
 
     if entities:
-        # index_hash = {} #maps index to word
-        # for entity in entities:
-        #     indeces = [m.start() for m in re.finditer(entity[0],text)]
-        #     for x in indeces:
-        #         index_hash
-        #     index_hash[] = indeces
 
         
-        temp_text = ""
+        nums = []
+        import random
+        for i,entity in enumerate(entities):
+            text = text.replace(entity[0],f"|{i}|")
 
-        for entity in entities:
+        for i, entity in enumerate(entities):
             ent_string = fr'°{entity}°'
-            text = text.replace(entity[0],ent_string)
-
+            text = text.replace(f"|{i}|", ent_string)
         text = text.split("°")        
         return text
     else:
