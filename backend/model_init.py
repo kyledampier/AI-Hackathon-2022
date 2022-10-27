@@ -1,5 +1,4 @@
-import spacy
-import requests
+
 import torch
 from transformers import PreTrainedTokenizerFast
 from transformers import T5ForConditionalGeneration

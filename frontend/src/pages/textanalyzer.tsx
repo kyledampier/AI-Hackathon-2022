@@ -63,6 +63,8 @@ const TextAnalyzer: NextPage = () => {
         }));
     };
 
+    const colorDict = {'ORG':'#C9D4FB', 'LAW':'#F2C4C3', 'LANGUAGE':'#FEE79C', 'FAC':'#a6edb2', 'PERSON': '#c8b5ff', 'WORK_OF_ART':'#ffd2a8', 'GPE': '#e6a8ff', 'PRODUCT': '#a8b4ff', 'EVENT': '#a8fff8', 'LOC': '#c8ffa8'}
+
   return (
     <Flex justifyContent='center'>
       <Flex width="100%" maxWidth="1200px" bgColor="#212427" flexDirection='column'>
@@ -86,19 +88,76 @@ const TextAnalyzer: NextPage = () => {
                             <Textarea onChange={onChange} mb={5} name="text"  _placeholder={{ color: "#55586b" }} color="white" bg="#202125" required height="340px" _focus={{ border: "1.5px solid #616aee" }} isDisabled={false} placeholder='Enter text you want to analyze' />
                         </Flex>
                         <Flex display="inline" overflow="scroll"  flexDirection="column" pt={5} pl={5} pr={5} border="2px solid #38393E" borderRadius="10px" ml={5} height="400px" width="50%" bg="#202125">
-                            <Text mb={4} fontWeight={800} fontSize="14pt" color="white">Analyzed Text</Text>
+                            <Text mb={3} mt={-2} fontWeight={800} fontSize="14pt" color="white">Analyzed Text</Text>
                             
                             {analyzedText.map((entity, index) => {
                                 if (typeof entity === "string") {
                                     return <Text key={index} display="inline" color="white">{entity}</Text>
                                 } else {
-                                    return <Tooltip key={index}label={entity[2]}><Text  display="inline" color="purple">{entity[0]}</Text></Tooltip>
+                                    return <Tooltip key={index}label={entity[2]}><Text pl={0.5} pr={1} borderRadius="10px" bg={colorDict[entity[1] as keyof typeof colorDict]} display="inline" color="black">{entity[0]}</Text></Tooltip>
                                 }
                             })}
-                            <Text fontSize="14pt" fontWeight={700} color="#616aee">Filler</Text>
                         </Flex>
                     </Flex>
-                    <Button isLoading={loading} type="submit" _hover={{ bg: "#5f40f7" }} height="45px" bg="#616aee" color="white" ml="43px" width="155px">Generate Analogy</Button>
+                    <Flex flexDirection="row" align="center">
+                        <Button isLoading={loading} type="submit" _hover={{ bg: "#5f40f7" }} height="45px" bg="#616aee" color="white" ml="43px" width="155px">Analyze Text</Button>
+                        
+                        <Flex overflow="scroll" flexDirection="column" mt={-5} width="30%" ml="auto" mr="17%">
+                            <Text color="white" fontSize="13pt" fontWeight={700}>Hover to view Color Scheme</Text>
+                            <Flex borderRadius="8px" bg="#202125" flexDirection="row" height="50px" width="100%">
+                                <Flex align="center" ml={2} flexDirection="row">
+                                    <Tooltip placement="top" label="ORG">
+                                        <Flex borderRadius="5px" height="20px" width="20px" bg="#C9D4FB"></Flex>
+                                    </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                    <Tooltip placement="top" label="LAW">
+                                        <Flex borderRadius="5px" height="20px" width="20px" bg="#F2C4C3"></Flex>
+                                    </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                    <Tooltip placement="top" label="LANGUAGE">
+                                        <Flex borderRadius="5px" height="20px" width="20px" bg="#FEE79C"></Flex>
+                                    </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                <Tooltip placement="top" label="FAC">
+                                    <Flex borderRadius="5px" height="20px" width="20px" bg="#a6edb2"></Flex>
+                                </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                <Tooltip placement="top" label="PERSON">
+                                    <Flex borderRadius="5px" height="20px" width="20px" bg="#c8b5ff"></Flex>
+                                </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                <Tooltip placement="top" label="WORK_OF_ART">
+                                    <Flex borderRadius="5px" height="20px" width="20px" bg="#ffd2a8"></Flex>
+                                </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                <Tooltip placement="top" label="Government Person/Entity">
+                                    <Flex borderRadius="5px" height="20px" width="20px" bg="#e6a8ff"></Flex>
+                                </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                <Tooltip placement="top" label="PRODUCT">
+                                    <Flex borderRadius="5px" height="20px" width="20px" bg="#a8b4ff"></Flex>
+                                </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                <Tooltip placement="top" label="EVENT">
+                                    <Flex borderRadius="5px" height="20px" width="20px" bg="#a8fff8"></Flex>
+                                </Tooltip>
+                                </Flex>
+                                <Flex align="center" ml={3} flexDirection="row">
+                                <Tooltip placement="top" label="LOC">
+                                    <Flex borderRadius="5px" height="20px" width="20px" bg="#c8ffa8"></Flex>
+                                </Tooltip>
+                                </Flex>
+                            </Flex>
+                        </Flex>
+                    </Flex>
                 </form>
             </Flex>
         </Flex>

@@ -1,13 +1,10 @@
 from transformers import pipeline
+import pickle
+import os
+import spacy
+import re
 
-text = """In early October, a wave of high-energy radiation swept over Earth from a gamma-ray burst, one of the most singularly catastrophic and violent events the cosmos has to offer. Astronomers quickly determined its distance and found it was the closest such burst ever seen: a mere two billion light-years from Earth. Or, if you prefer, 20 billion trillion kilometers away from us, a decent fraction of the size of the observable universe.
-
-To astronomers, “close” means something different. This one was so close, cosmically speaking, that it was detected by a fleet of observatories both on and above the Earth, and is already yielding a trove of scientific treasure. But even from this immense distance in human terms, it was the brightest such event ever seen in x-rays and gamma rays, bright enough to spot its visible-light emission in smaller amateur telescopes, and was even able to physically affect our upper atmosphere. Despite that, this gamma-ray burst poses no danger to us. Either way, I’m glad they keep their distance.
-
-Gamma-ray bursts, or GRBs, are intense blasts of gamma rays—the highest-energy form of light—that typically last from a fraction of a second to a few minutes in length. Gamma-ray bursts have been a puzzle to astronomers since the Cold War, when the first was discovered in the 1960s by orbiting detectors looking for nuclear weapons tested on or above Earth. Over 1,700 have been observed since then. Still, it took decades to pin them down well enough in the sky to observe them with more conventional telescopes, and to understand better what they were. Even then it was difficult, as each GRB has idiosyncrasies, making them complicated to understand as a group.
-
-Still, we do have a decent grasp of their basic nature. Short-duration bursts—generally a few seconds long at most—come from two superdense neutron stars colliding and blasting out fierce energy, whereas long-duration ones—lasting several minutes—come from massive stars exploding at the ends of their lives. The core of the star collapses, forming a black hole. A swirling disk of material that wasn’t immediately swallowed by the black hole rapidly forms around it, funneling twin beams of intense energy out into space, one pointing up and the other down, away from the disk. These eat their way through the dying star and erupt outward while the rest of the star explodes as a very powerful supernova.
-"""
+nlp = spacy.load("en_core_web_lg")
 
 def splitText(text):
     """
@@ -20,23 +17,151 @@ def splitText(text):
 
     # Detect periods
     ans = []
+    num_sentences_in_chunk = 4
     ctr = 0
+    lp = 0
+    
+    # Chunk every 4 sentences
     for i, c in enumerate(text):
-        lp = 0
         if c == '.':
             ctr += 1
-            if ctr % 3 == 0 or i == len(text) - 1:
+            if ctr % num_sentences_in_chunk == 0 or i == len(text) - 1:
                 ans.append(text[lp:i+1])
                 lp = i + 1
     
     return ans
 
-def summarizeText(textList):
+def initBARTPipeline():
 
-    # Setup BART pipeline
-    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+    summary_pipeline = ""
+    pipeline_pkl_file = "facebook-bart-large-cnn.txt"
+
+    if (os.path.exists(pipeline_pkl_file)):
+        print("Retrieving pipeline from pickle file...")
+        pickle_off = open(pipeline_pkl_file, "rb")
+        summary_pipeline = pickle.load(pickle_off)
+    else:
+        print("Initializing pipeline...")
+        summary_pipeline = pipeline("summarization", model="facebook/bart-large-cnn")
+
+        with open(pipeline_pkl_file, 'wb') as fh:
+            pickle.dump(summary_pipeline, fh)
+
+    return summary_pipeline
 
 
-print(text)
-print(splitText(text))
-#print(summarizer(text, min_length=20, do_sample=False))
+def summarizeText(textList, summarizer):
+
+    total_summary = ''
+
+    # Need to pass through the initiated BART Pipeline
+    for chunk in textList:
+
+        chunk_summary = summarizer(chunk, min_length=20, do_sample=False)
+        total_summary += f"{chunk_summary[0]['summary_text']} "
+        print(chunk_summary)
+    
+    return total_summary
+
+def extractEntities(total_summary):
+    exclusionList = [ 'TIME', 'DATE', 'CARDINAL', 'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'NORP']
+    doc = nlp(total_summary)
+
+    ent_map = {}
+
+    print(doc.ents)
+    print(list(doc.noun_chunks))
+    if doc.ents:
+        for ent in doc.ents:
+            if ent.label_ in exclusionList:
+                pass
+            else:
+                if ent.text in ent_map:
+                    pass
+                else:
+                    ent_map[ent.text] = 0
+
+    return ent_map
+
+def filter_nouns_spacy(text, tags=['NOUN']):
+    doc = nlp(text)
+    output = [token.lemma_ for token in doc if token.pos_ in tags]
+    return output
+
+def getBlanks(text):
+
+    doc = nlp(text)
+    sentences = [sentence.text for sentence in doc.sents]
+    subjects = {}
+
+    print(sentences)
+
+    for idx, sentence in enumerate(doc.sents):
+        sentdoc = nlp(sentence.text)
+        ctr = 0
+        for sentdoc_idx, token in enumerate(sentdoc):
+            if ("subj" in token.dep_):
+                subtree = list(token.subtree)
+                start = subtree[0].i
+                end = subtree[-1].i + 1
+
+                subject = sentdoc[start:end]
+
+                num_spaces = 0
+                subject_str = str(subject)
+
+                for c in subject_str:
+                    if c == ' ':
+                        num_spaces += 1
+
+                if num_spaces < 15:
+                    subjects[idx] = subject_str
+    
+    # print(subjects)
+    # print(len(subjects))
+    # print(len(sentences))
+
+    for idx, sentence in enumerate(sentences):
+        
+        # If index in subjects.keys()
+        if  idx in subjects:
+            #print(f"Old sentence: {sentence} ")
+            repl_str = " " + '_' * len(subjects[idx]) + " "
+            new_sentence = re.sub(f" {subjects[idx]} ", repl_str, sentence, count = 1)
+            #print(f"New sentence: {new_sentence} ")
+            sentences[idx] = new_sentence
+        
+    return sentences
+
+# Create pdf
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+def pdf(sentences, filename="my_notes.pdf"):
+
+    assert filename.endswith(".pdf")
+
+    doc = SimpleDocTemplate(
+            f"{filename}",
+            pagesize=letter,
+            rightMargin=60, leftMargin=35,
+            topMargin=35, bottomMargin=18,
+            )
+
+    styles = getSampleStyleSheet()
+    flowables = []
+
+    title = Paragraph("Guided Notes", style=styles["Title"])
+    flowables.append(title)
+
+    for sentence in sentences:
+        s = sentence + "<br />\n" + "<br />\n"
+        para = Paragraph(s, style=styles["BodyText"])
+        flowables.append(para)
+
+    doc.build(flowables)
+
+def createPDF(text):
+    text = re.sub('\n', '', text)
+    sentences = getBlanks(text)
+    pdf(sentences)
