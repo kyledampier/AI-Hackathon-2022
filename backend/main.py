@@ -30,6 +30,8 @@ app.add_middleware(
 
 data = pd.read_csv('data_all.csv')
 
+print("Server running!")
+
 
 class RewordingItem(BaseModel):
     audience: int
@@ -48,6 +50,11 @@ class NERItem(BaseModel):
 class AnalogyItem(BaseModel):
     target: Union[str, None] = None
     text: Union[str, None] = None
+
+
+class RewordItem(BaseModel):
+    text: Union[str, None] = None
+    audience: int
 
 
 @app.get("/countries")
@@ -84,9 +91,10 @@ def analogy_endpoint(item: AnalogyItem):
 
 
 @app.post("/rewording")
-def get_rewording(audience: int, text: Union[str, None] = None):
-    if text:
-        reworded_text = reword(audience, text)
+def get_rewording(item: RewordItem):
+    reworded_text = ""
+    if item.text:
+        reworded_text = reword(item.audience, item.text, printOn=True)
     return {"reworded_text": reworded_text}
 
 
