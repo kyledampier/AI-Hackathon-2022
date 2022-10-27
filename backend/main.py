@@ -9,7 +9,7 @@ from typing import Union
 from ner import extractAndDefineEntities
 from analogy import getAnalogy
 from rewording import reword
-
+from qag import getQAPairs
 from typing import Union
 
 openai_api_key = os.environ.get('OPENAI_API_KEY')
@@ -110,3 +110,14 @@ def compare_endpoint(request: CompareItem):
     df = data[data['Code'].isin(country_codes)]
     df = df[columns]
     return df.fillna('').to_dict(orient='records')
+
+
+
+class QAGItem(BaseModel):
+    text: Union[str, None] = None
+
+
+@app.post("/qag")
+def compare_endpoint(request: QAGItem):
+    qaPairs = getQAPairs(QAGItem)
+    return {"qapairs": qaPairs  }

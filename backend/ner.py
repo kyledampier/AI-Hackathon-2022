@@ -64,7 +64,6 @@ def extractAndDefineEntities(text):
                 if ent.text not in ent_set:
                     ent_set.add(ent.text)
                     s = wikiExplainer(ent.text)
-                    print('s',s)
                     pkg = [ ent.text,str(ent.label_), s]
                     entities.append(pkg)
                 
