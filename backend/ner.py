@@ -6,7 +6,7 @@ nlp = spacy.load("en_core_web_lg")
 
 
 
-def wikiExplainer(title, removeEscapeChars=True, explainerLength=3):
+def wikiExplainer(title, removeEscapeChars=True, explainerLength=2):
     title = str(title)
     response = requests.get(
         'https://en.wikipedia.org/w/api.php',
@@ -16,7 +16,7 @@ def wikiExplainer(title, removeEscapeChars=True, explainerLength=3):
             'titles': title,
             'prop': 'extracts',
             'exintro': True,
-            'exsentences': 5,
+            'exsentences': 3,
             'explaintext': True,
             'exsectionformat': 'wiki'
         }).json()
@@ -25,10 +25,20 @@ def wikiExplainer(title, removeEscapeChars=True, explainerLength=3):
             " ", "_") + "|" + title.replace(" ", "_") + "&redirects=").json()
     explainer = next(iter(response['query']['pages'].values()))
     if 'extract' in explainer:
+        
         explainer = explainer['extract']
         if removeEscapeChars:
             explainer = ''.join(c for c in explainer if c.isalnum() or c == ' ' or c == '.')
             explainer = explainer.replace("\n", " ")
+        
+        doc = nlp(explainer)
+        explainer = ""
+
+        for j,sentence in enumerate(doc.sents):
+            if(j+1 > explainerLength):
+                break
+            else:
+                explainer += str(sentence.text) + " "
     else:
         explainer = "No Definition Found"
 
@@ -60,10 +70,21 @@ def extractAndDefineEntities(text):
                 
 
     if entities:
+        # index_hash = {} #maps index to word
+        # for entity in entities:
+        #     indeces = [m.start() for m in re.finditer(entity[0],text)]
+        #     for x in indeces:
+        #         index_hash
+        #     index_hash[] = indeces
+
+        
+        temp_text = ""
+
         for entity in entities:
-            indeces = [m.start() for m in re.finditer(entity[0],text)]
-            entity = entity.append(indeces)
-            
-        return entities
+            ent_string = fr'°{entity}°'
+            text = text.replace(entity[0],ent_string)
+
+        text = text.split("°")        
+        return text
     else:
         return 0
