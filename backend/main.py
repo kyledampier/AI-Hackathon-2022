@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
+import spacy
 from fastapi import FastAPI  # File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
@@ -13,6 +14,7 @@ from qag import getQAPairs
 from typing import Union
 
 openai_api_key = os.environ.get('OPENAI_API_KEY')
+nlp = spacy.load("en_core_web_lg")
 
 app = FastAPI()
 
@@ -119,5 +121,5 @@ class QAGItem(BaseModel):
 
 @app.post("/qag")
 def compare_endpoint(request: QAGItem):
-    qaPairs = getQAPairs(QAGItem)
+    qaPairs = getQAPairs(QAGItem.text)
     return {"qapairs": qaPairs  }
