@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
+import scipy
 import spacy
 from fastapi import FastAPI  # File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -31,6 +32,7 @@ app.add_middleware(
 )
 
 data = pd.read_csv('data_all.csv')
+data_mapping = pd.read_csv('data_mapping.csv')
 
 print("Server running!")
 
@@ -111,6 +113,31 @@ def compare_endpoint(request: CompareItem):
     columns = request.columns + ['Country', 'Code', 'ContinentCode']
     df = data[data['Code'].isin(country_codes)]
     df = df[columns]
+    for col in request.columns:
+        if not col.endswith('|year'):
+            out = [list(df[col])]
+
+            bigger_is_better = data_mapping[data_mapping['column']
+                                            == col]
+            bigger_is_better = not bigger_is_better['bigger_is_better'].values[0]
+            print(bigger_is_better)
+
+            filter_ranks = df[col].rank(
+                method='min', ascending=bigger_is_better)
+            out.append(list(filter_ranks))
+
+            global_ranks = data[col].rank(
+                method='min', ascending=bigger_is_better)
+            out.append(
+                list(global_ranks.loc[global_ranks.isin(filter_ranks.index)]))
+
+            percentiles = scipy.stats.percentileofscore(
+                data[col], df[col], 'rank', nan_policy='omit')
+            out.append(list(percentiles))
+
+            out = np.array(out).T
+            df[col] = out
+
     return df.fillna('').to_dict(orient='records')
 
 
