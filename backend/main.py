@@ -1,4 +1,5 @@
 import os
+from tkinter import NONE
 import pandas as pd
 import numpy as np
 import scipy
@@ -12,6 +13,7 @@ from ner import extractAndDefineEntities
 from analogy import getAnalogy
 from rewording import reword
 from qag import getQAPairs
+from notes_gen import createPDF
 from typing import Union
 
 openai_api_key = os.environ.get('OPENAI_API_KEY')
@@ -150,3 +152,14 @@ class QAGItem(BaseModel):
 def compare_endpoint(request: QAGItem):
     qaPairs = getQAPairs(request.text)
     return {"qapairs": qaPairs  }
+
+class NotesItem(BaseModel):
+    text: Union[str, None] = None
+    filename: Union[str, None] = None
+
+@app.post("/notes")
+def gen_notes(request: NotesItem):
+    createPDF(request.text)
+
+    filename = "my_notes.pdf" if request.filename == None else request.filename
+    return FileResponse(path=filename)
