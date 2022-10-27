@@ -102,7 +102,7 @@ const TextAnalyzer: NextPage = () => {
                     <Flex flexDirection="row" align="center">
                         <Button isLoading={loading} type="submit" _hover={{ bg: "#5f40f7" }} height="45px" bg="#616aee" color="white" ml="43px" width="155px">Analyze Text</Button>
                         
-                        <Flex mr={2} overflow="scroll" ml={3} flexDirection="column" mt={-5} width="30%" ml="auto" mr="17%">
+                        <Flex overflow="scroll" flexDirection="column" mt={-5} width="30%" ml="auto" mr="17%">
                             <Text color="white" fontSize="13pt" fontWeight={700}>Hover to view Color Scheme</Text>
                             <Flex borderRadius="8px" bg="#202125" flexDirection="row" height="50px" width="100%">
                                 <Flex align="center" ml={2} flexDirection="row">
