@@ -66,7 +66,7 @@ const RewordSentence: NextPage = () => {
             </Flex>
             <Flex flexDir="column" p={5} pl={6} pr={3} flexDirection="row" width="100%">
               <Text fontWeight={800} color="white">
-                Understanding technical text can be hard. We hope to simplify that using machine learning. Add some text and watch as your text is reconstructed using simpler vocabulary for non-technical audiences.
+                Understanding technical text can be hard. We hope to simplify that using machine learning. Add some text, select the skill level that you want your text to be simplified (or enhanced!) and watch as your text is reconstructed using simpler vocabulary for non-technical audiences.
               </Text>
             </Flex>
             <form onSubmit={onSubmit}>
