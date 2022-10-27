@@ -6,16 +6,6 @@ import re
 
 nlp = spacy.load("en_core_web_lg")
 
-text = """
-The most powerful explosions in the universe just got even more potent, two teams of astronomers report today in Nature.
-
-Almost every day, without warning, gamma-ray bursts (GRBs) wash over Earth from somewhere in the vast depths of the cosmos. Each is thought to signal the cataclysmic birth of a black hole, through either the collapse of a massive star or the merging of neutron stars. Because a typical GRB emits in mere seconds more energy than our sun will produce across its entire 10-billion-year lifetime, it can be seen across almost the entirety of the visible universe.
-
-Provided, that is, you have the right equipment. Although invisible to our eyes, gamma rays pack a wallop. They are so energetic, in fact, that they rip apart atoms and molecules in Earth’s atmosphere with ruthless efficiency, literally vanishing into thin air before they can reach ground-based telescopes. In the decades since their initial, chance discovery in the late 1960s by U.S. government satellites watching for nuclear explosions on and around Earth, the gamma rays from GRBs have chiefly been monitored by space-based observatories. The detectors on such facilities, however, are too small to be sensitive to the small fraction of highest-energy gamma rays theorists predict GRBs should emit—so no one really knew just how powerful GRBs could be. For the past three decades, astronomers have sought to catch these elusive, extreme GRB emissions by using arrays of larger ground-based telescopes to watch for the faint glow—called Cherenkov light—created by ultrahigh-energy gamma rays crashing into the upper atmosphere. But, constrained by difficult observing conditions and limited to only the brightest, closest GRBs, none of these efforts were successful—until now.
-"""
-text = re.sub('\n', '', text)
-text = re.sub('\t', '', text)
-
 def splitText(text):
     """
     params:
@@ -127,18 +117,18 @@ def getBlanks(text):
                 if num_spaces < 15:
                     subjects[idx] = subject_str
     
-    print(subjects)
-    print(len(subjects))
-    print(len(sentences))
+    # print(subjects)
+    # print(len(subjects))
+    # print(len(sentences))
 
     for idx, sentence in enumerate(sentences):
         
         # If index in subjects.keys()
         if  idx in subjects:
-            print(f"Old sentence: {sentence} ")
+            #print(f"Old sentence: {sentence} ")
             repl_str = " " + '_' * len(subjects[idx]) + " "
             new_sentence = re.sub(f" {subjects[idx]} ", repl_str, sentence, count = 1)
-            print(f"New sentence: {new_sentence} ")
+            #print(f"New sentence: {new_sentence} ")
             sentences[idx] = new_sentence
         
     return sentences
@@ -175,7 +165,3 @@ def createPDF(text):
     text = re.sub('\n', '', text)
     sentences = getBlanks(text)
     pdf(sentences)
-    
-        
-
-createPDF(text)
