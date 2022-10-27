@@ -1,0 +1,151 @@
+column,bigger_is_better
+Happiness Index 0 (unhappy) - 10 (happy),True
+Human Development Index (0 - 1),True
+Women in parliament percent,True
+Land area in sq. km,True
+Cost of living index world average = 100,True
+Food price index world average = 100,False
+Fruit price index world average = 100,False
+Vegetable price index world average = 100,False
+Bread and cereal prices world average = 100,False
+Milk cheese and eggs price index world average = 100,False
+Meat price index world average = 100,False
+Fish and seafood prices world average = 100,False
+Alcohol beverage price index world average = 100,False
+Clothing and footwear prices world average = 100,False
+Housing and utilities price index world average  = 100,False
+Furniture and household maintenance prices world average = 100,False
+Healthcare price index world average = 100,False
+Transport prices world average = 100,False
+Hotel and restaurant price index world average = 100,False
+Vehicle prices world average = 100,False
+Communication price index world average = 100,False
+Recreation and culture price index world average = 100,False
+Education service price index world average = 100,False
+Machinery and equipment prices world average = 100,False
+Fossil fuels electricity generation billion kilowatthours,False
+Wind electricity generation billion kilowatthours,True
+Solar electricity generation billion kilowatthours,True
+Hydroelectricity generation billion kilowatthours,True
+Nuclear power generation billion kilowatthours,True
+Geothermal electricity generation billion kilowatthours,True
+Fossil fuels electricity capacity million kilowatts,True
+Wind electricity capacity million kilowatts,True
+Solar electricity capacity million kilowatts,True
+Hydroelectricity capacity million kilowatts,True
+Nuclear electricity capacity million kilowatts,True
+Geothermal electricity capacity million kilowatts,True
+Oil consumption thousand barrels per day,False
+Gini income inequality index,False
+Poverty percent of population,False
+Percent income earned by the top 10 percent of earners,False
+Health spending per capita,True
+Health spending as percent of GDP,True
+Life expectancy in years,True
+Death rate per 1000 people,False
+Fertility rate births per woman,True
+Prevalence of HIV percent of the population ages 15-49,False
+Cases of Tuberculosis per 100000 people,False
+Hospital beds per 1000 people,True
+Nurse to hospital bed ratio,True
+Doctors per 1000 people,True
+Nurses per 1000 people,True
+Dentists per 1000 people,True
+Pharmacists per 1000 people,True
+Gasoline consumption thousand barrels per day,False
+Coal consumption thousand short tons,False
+Electricity consumption billion kilowatthours,True
+Renewable power generation billion kilowatthours,True
+Property rights index (0-100),True
+Freedom from corruption index (0-100),True
+Fiscal freedom index (0-100),True
+Business freedom index (0-100),True
+Labor freedom index (0-100),True
+Monetary freedom index (0-100),True
+Trade freedom index (0-100),True
+Investment freedom index (0-100),True
+Financial freedom index (0-100),True
+Economic freedom overall index (0-100),True
+Quality of roads 1(low) - 7(high),True
+Quality of railroad infrastructure 1(low) - 7(high),True
+Quality of port infrastructure 1(low) - 7(high),True
+Quality of air transport infrastructure 1(low) - 7(high),True
+Alternative and nuclear energy percent of total energy use,True
+Income from natural resources percent of GDP,False
+Access to electricity percent of the population,True
+Population size in millions,True
+Population density people per square km,True
+Population ages 65 and above percent of total,True
+Population ages 0-14 percent of total,True
+Female population percent of total,True
+Refugee population,True
+Migrant population percent of total population,True
+Population growth percent,True
+Globalization index (0-100),True
+Economic globalization index (0-100),True
+Political globalization index (0-100),True
+Social globalization index (0-100),True
+Kidnappings per 100000 people,False
+Robberies per 100000 people,False
+Number of prisoners per 100000 people,False
+Thefts per 100000 people,False
+Homicides per 100000 people,False
+Economic growth: the rate of change of real GDP,True
+GDP per capita current U.S. dollars,True
+GDP per hour worked index relative to the U.S.,True
+Capital investment as percent of GDP,True
+Household consumption as percent of GDP,True
+Unemployment rate,False
+Public spending on education percent of GDP,True
+Public spending on education percent of public spending,True
+Literacy rate,True
+Female literacy rate ages 15-24,True
+Male literacy rate ages 15-24,True
+Youth literacy rate ages 15-24,True
+Student teacher ratio primary school,False
+Primary school completion rate,True
+Primary school starting age ,False
+Ratio of female to male pupils in primary school,True
+Ratio of female to male students in secondary school,True
+Ratio of female to male students in tertiary level education,True
+Preprimary school enrollment percent of all eligible children,True
+Primary school enrollment percent of all eligible children,True
+Secondary school enrollment percent of all eligible children,True
+Tertiary school enrollment percent of all eligible children,True
+Trained teachers in primary education percent of total,True
+Labor force participation rate,True
+Female labor force participation rate,True
+Male labor force participation rate,True
+People practicing Judaism as percent of the population,True
+Buddhists as percent of the total population,True
+People practicing Hinduism as percent of the population,True
+Muslims as percent of the total population,True
+Shia Muslims as percent of the total population,True
+Sunni Muslims as percent of the total population,True
+Christians as percent of the total population,True
+Catholic Christians as percent of the total population,True
+Protestant Christians as percent of the total population,True
+Eastern Orthodox Christians as percent of the total population,True
+Non religious people as percent of the population,True
+Fragile state index 0 (low) - 120 (high),False
+Security threats index 0 (low) - 10 (high),False
+Factionalized elites index 0 (low) - 10 (high),False
+Group grievance index 0 (low) - 10 (high),False
+Economic decline index 0 (low) - 10 (high),False
+Uneven economic development index 0 (low) - 10 (high),False
+Human flight and brain drain index 0 (low) - 10 (high),False
+State legitimacy index 0 (high) - 10 (low),False
+Public services index 0 (high) - 10 (low),False
+Human rights and rule of law index 0 (high) - 10 (low),False
+Demographic pressures 0 (low) - 10 (high),False
+Refugees and displaced persons index 0 (low) - 10 (high),False
+External interventions index 0 (low) - 10 (high),False
+Rule of law index (-2.5 weak; 2.5 strong),True
+Government effectiveness index (-2.5 weak; 2.5 strong),True
+Control of corruption (-2.5 weak; 2.5 strong),True
+Regulatory quality index (-2.5 weak; 2.5 strong),True
+Voice and accountability index (-2.5 weak; 2.5 strong),True
+Political stability index (-2.5 weak; 2.5 strong),True
+Corruption Perceptions Index 100 = no corruption,True
+Political rights index 7 (weak) - 1 (strong),False
+Civil liberties index 7 (weak) - 1 (strong) ,False
