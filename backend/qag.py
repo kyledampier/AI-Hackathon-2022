@@ -16,7 +16,7 @@ def getQAPair(answer, content):
     question_ids = model.generate(torch.tensor([input_ids]))
     decode = tokenizer.decode(question_ids.squeeze().tolist(), skip_special_tokens=True)
     decode = decode.replace(' # # ', '').replace('  ', ' ').replace(' ##', '')
-    return [decode, answer]
+    return decode, answer
 
 
 def getQAPairs(text):
@@ -34,8 +34,16 @@ def getQAPairs(text):
                     ent_set.add(ent.text)
     QA_PAIRS = []
     if ent_set:
+        k = len(ent_set)
+        i=1
         for ent in ent_set:
-            QA_PAIRS.append(getQAPair(ent, text))
+            print(f"Getting Question {i} of {k}")
+            question, answer = getQAPair(ent, text)
+            if len(question) > 10:
+
+                QA_PAIRS.append([question, answer])
+
+            i+=1
         return QA_PAIRS
     else:
         return []
