@@ -148,5 +148,5 @@ class QAGItem(BaseModel):
 
 @app.post("/qag")
 def compare_endpoint(request: QAGItem):
-    qaPairs = getQAPairs(QAGItem.text)
+    qaPairs = getQAPairs(request.text)
     return {"qapairs": qaPairs  }
