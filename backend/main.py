@@ -21,10 +21,6 @@ nlp = spacy.load("en_core_web_lg")
 
 app = FastAPI()
 
-origins = [
-    "*"
-]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
@@ -114,7 +110,7 @@ def compare_endpoint(request: CompareItem):
     country_codes = request.country_codes
     columns = request.columns + ['Country', 'Code', 'ContinentCode']
     df = data[data['Code'].isin(country_codes)]
-    df = df[columns]
+    df = df[columns].fillna(0.0)
     for col in request.columns:
         if not col.endswith('|year'):
             out = [list(df[col])]
@@ -131,17 +127,16 @@ def compare_endpoint(request: CompareItem):
             global_ranks = data[col].rank(
                 method='min', ascending=bigger_is_better)
             out.append(
-                list(global_ranks.loc[global_ranks.isin(filter_ranks.index)]))
+                list(global_ranks.loc[df.index]))
 
             percentiles = scipy.stats.percentileofscore(
                 data[col], df[col], 'rank', nan_policy='omit')
             out.append(list(percentiles))
 
-            out = np.array(out).T
+            out = np.array(out).T.tolist()
             df[col] = out
 
     return df.fillna('').to_dict(orient='records')
-
 
 
 class QAGItem(BaseModel):
@@ -151,11 +146,13 @@ class QAGItem(BaseModel):
 @app.post("/qag")
 def compare_endpoint(request: QAGItem):
     qaPairs = getQAPairs(request.text)
-    return {"qapairs": qaPairs  }
+    return {"qapairs": qaPairs}
+
 
 class NotesItem(BaseModel):
     text: Union[str, None] = None
     filename: Union[str, None] = None
+
 
 @app.post("/notes")
 def gen_notes(request: NotesItem):

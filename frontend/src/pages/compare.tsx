@@ -19,7 +19,11 @@ const Compare: NextPage = () => {
   const [columnOptions, setColumnOptions] = useState<Array<string>>([]);
   const [selectedColumns, setSelectedColumns] = useState<Array<string>>([]);
 
+  const [valueType, setValueType] = useState<number>(0);
+
   const [tableData, setTableData] = useState<Array<any>>([]);
+
+  const valueTypes = ['Raw Value', 'Filtered Rank', 'Global Rank', 'Precentile'];
 
   useEffect(() => {
     fetch(`${HOST_PREFIX}/countries`).then(async (response) => {
@@ -30,7 +34,7 @@ const Compare: NextPage = () => {
       setColumnOptions(columnOptions);
       callBackend(selectedCountries, selectedColumns);
     });
-  }, [selectedCountries]);
+  }, []);
 
   const callBackend = async (country_codes: Array<string>, cols: Array<string>) => {
     const request = await fetch(`${HOST_PREFIX}/compare`, {
@@ -41,6 +45,7 @@ const Compare: NextPage = () => {
         columns: cols,
       }),
     });
+    console.log(request);
     const data = await request.json();
     console.log(data);
     setSelectedColumns(cols);
@@ -87,6 +92,11 @@ const Compare: NextPage = () => {
     callBackend(tmp, selectedColumns);
   };
 
+  const handleValueType = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const val = e.target.value as number;
+    setValueType(val);
+  };
+
   return (
     <Flex justifyContent="center">
       <Flex width="100%" maxWidth="1200px" bgColor="#212427" flexDirection="column">
@@ -110,17 +120,13 @@ const Compare: NextPage = () => {
                 The Compare Country widget uses data from the Global Economy database to compare over 200 countries in terms of their Happiness Index, GDP, Cost of Living Index, among 300+ other metrics. This enables users to get a broad sense of how countries rank in terms of the quality of life and environmental factors. Users can also compare individual countries side-by-side to see how they rank on specific metrics.
               </Text>
 
-              <Flex ml={6} flexDirection="row" mb={4}>
-                <Text color="white" fontWeight={800} fontSize="12pt">
-                  Add Country for comparison
-                </Text>
-                <Text ml="232px" mr={10} color="white" fontWeight={800} fontSize="12pt">
-                  Add Comparison Metric
-                </Text>
-              </Flex>
+              <Flex ml={6} flexDirection="row" mb={4}></Flex>
 
               <Flex flexDirection="row">
-                <Box w={400} ml={5}>
+                <Box w="30%" ml={5} flexDirection="column">
+                  <Text mb={2} color="white" fontWeight={800} fontSize="12pt">
+                    Add Country for comparison
+                  </Text>
                   <Select borderColor="#38393E" border="2px solid" _placeholder={{ fontWeight: 'bold' }} bg="#202125" placeholder="Select Country" color="white" onChange={handleSelectCountry}>
                     {countries.map((country: any) => (
                       <option key={country['Code']} value={country['Code']}>
@@ -130,7 +136,23 @@ const Compare: NextPage = () => {
                   </Select>
                 </Box>
 
-                <Flex ml={5} w={400}>
+                <Box w="30%" ml={5} flexDirection="column">
+                  <Text mb={2} color="white" fontWeight={800} fontSize="12pt">
+                    Select Value Type
+                  </Text>
+                  <Select borderColor="#38393E" border="2px solid" _placeholder={{ fontWeight: 'bold' }} bg="#202125" value={valueType} color="white" onChange={handleValueType}>
+                    {valueTypes.map((type: any, index: number) => (
+                      <option key={type} value={index}>
+                        {type}
+                      </option>
+                    ))}
+                  </Select>
+                </Box>
+
+                <Flex w="30%" ml={5} flexDirection="column">
+                  <Text ml={5} mb={2} color="white" fontWeight={800} fontSize="12pt">
+                    Add Comparison Metric
+                  </Text>
                   <Select borderColor="#38393E" border="2px solid" placeholder="Add Comparison" bg="#202125" color="white" onChange={handleSelectColumn} ml={3} mr={5}>
                     {columnOptions.map((col) => (
                       <option key={'select-' + col} value={col}>
@@ -163,7 +185,7 @@ const Compare: NextPage = () => {
                         </Td>
                         {selectedColumns.map((col) => (
                           <Td borderBottom="0px" borderTop="1px" bg="#292a2e" key={col + '-' + value['Country']}>
-                            {value[col]}
+                            {value[col][valueType]}
                           </Td>
                         ))}
                       </Tr>
