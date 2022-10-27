@@ -1,6 +1,6 @@
 import { Button, Text, Menu, MenuButton, MenuItem, MenuList, Flex, Link, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
-import { MdCompareArrows, MdViewInAr } from 'react-icons/md';
+import { MdCompareArrows, MdStickyNote2, MdViewInAr } from 'react-icons/md';
 import { VscSymbolString } from 'react-icons/vsc';
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 import { SiCheckio, SiMoleculer, SiIpfs } from 'react-icons/si';
@@ -57,6 +57,18 @@ const ToolsDropDown: React.FC = () => {
           <Link fontWeight={700} textDecoration="none" _hover={{ textDecoration: 'none' }} target="_blank">
             <Flex flexDirection="row" align="center">
               <SiIpfs /> &nbsp;&nbsp;Analogy Generator
+            </Flex>
+          </Link>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            router.push('/guidednotes');
+          }}
+          borderRadius="5px"
+        >
+          <Link fontWeight={700} textDecoration="none" _hover={{ textDecoration: 'none' }} target="_blank">
+            <Flex flexDirection="row" align="center">
+              <MdStickyNote2 /> &nbsp;&nbsp;Guided Notes
             </Flex>
           </Link>
         </MenuItem>
