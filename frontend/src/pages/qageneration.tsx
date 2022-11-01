@@ -6,6 +6,8 @@ import { IoLogoBuffer } from 'react-icons/io5';
 import { SiIpfs } from 'react-icons/si';
 import { constSelector } from 'recoil';
 
+const HOST_PREFIX = process.env.HOST_PREFIX ?? 'http://localhost:8080';
+
 const QAGeneration: NextPage = () => {
   const [text, setText] = useState('');
   const [isVisible, setVisible] = useState(false);

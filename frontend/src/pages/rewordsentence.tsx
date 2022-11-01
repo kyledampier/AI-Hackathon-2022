@@ -4,6 +4,8 @@ import router from 'next/router';
 import { useState } from 'react';
 import { VscSymbolString } from 'react-icons/vsc';
 
+const HOST_PREFIX = process.env.HOST_PREFIX ?? 'http://localhost:8080';
+
 const RewordSentence: NextPage = () => {
   const [rewordForm, setRewordForm] = useState({
     text: '',
@@ -15,7 +17,7 @@ const RewordSentence: NextPage = () => {
   const [reword, setReword] = useState('');
 
   const getReword = async () => {
-    const request = await fetch(`http://localhost:8080/rewording`, {
+    const request = await fetch(`${HOST_PREFIX}/rewording`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({
@@ -88,9 +90,15 @@ const RewordSentence: NextPage = () => {
               </Flex>
               <RadioGroup value={audience} ml="43px" mb={5} color={'white'} onChange={setAudience}>
                 <Stack direction={'row'} spacing={4}>
-                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'1'}>Beginner</Radio>
-                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'2'}>Intermediate</Radio>
-                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'3'}>Advanced</Radio>
+                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'1'}>
+                    Beginner
+                  </Radio>
+                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'2'}>
+                    Intermediate
+                  </Radio>
+                  <Radio fontWeight={700} colorScheme="whiteAlpha" value={'3'}>
+                    Advanced
+                  </Radio>
                 </Stack>
               </RadioGroup>
               <Button isLoading={loading} type="submit" _hover={{ bg: '#5f40f7' }} height="45px" bg="#616aee" color="white" ml="43px" width="155px">
