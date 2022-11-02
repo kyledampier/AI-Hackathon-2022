@@ -25,7 +25,7 @@ def getQAPair(answer, content):
 
 
 def getQAPairs(text):
-    """ exclusionList = ['TIME', 'DATE', 'CARDINAL',
+    exclusionList = ['TIME', 'DATE', 'CARDINAL',
                      'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'NORP']
     doc = nlp(text)
     entities = []
@@ -52,7 +52,7 @@ def getQAPairs(text):
         return QA_PAIRS
     else:
         return []
-        """
+        
     return [
         [
             "question: What journal published the study of GRBs today.",
