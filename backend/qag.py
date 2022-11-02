@@ -25,33 +25,33 @@ def getQAPair(answer, content):
 
 
 def getQAPairs(text):
-    exclusionList = ['TIME', 'DATE', 'CARDINAL',
-                     'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'NORP']
-    doc = nlp(text)
-    entities = []
-    ent_set = set()
-    if doc.ents:
-        for ent in doc.ents:
-            if ent.label_ in exclusionList:
-                pass
-            else:
-                if ent.text not in ent_set:
-                    ent_set.add(ent.text)
-    QA_PAIRS = []
-    if ent_set:
-        k = len(ent_set)
-        i=1
-        for ent in ent_set:
-            print(f"Getting Question {i} of {k}")
-            question, answer = getQAPair(ent, text)
-            if len(question) > 10:
+    # exclusionList = ['TIME', 'DATE', 'CARDINAL',
+    #                  'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'NORP']
+    # doc = nlp(text)
+    # entities = []
+    # ent_set = set()
+    # if doc.ents:
+    #     for ent in doc.ents:
+    #         if ent.label_ in exclusionList:
+    #             pass
+    #         else:
+    #             if ent.text not in ent_set:
+    #                 ent_set.add(ent.text)
+    # QA_PAIRS = []
+    # if ent_set:
+    #     k = len(ent_set)
+    #     i=1
+    #     for ent in ent_set:
+    #         print(f"Getting Question {i} of {k}")
+    #         question, answer = getQAPair(ent, text)
+    #         if len(question) > 10:
 
-                QA_PAIRS.append([question, answer])
+    #             QA_PAIRS.append([question, answer])
 
-            i+=1 
-        return QA_PAIRS
-    else:
-        return []
+    #         i+=1 
+    #     return QA_PAIRS
+    # else:
+    #     return []
         
     return [
         [

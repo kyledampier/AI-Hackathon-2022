@@ -141,7 +141,7 @@ const QAGeneration: NextPage = () => {
                       </div>
                     );
                   })}
-                  {wrongAns.length != 0 ? (
+                  {qapairs.length != 0 ? (
                     score == -1 ? (
                       <Button type="submit" _hover={{ bg: '#5f40f7' }} height="45px" bg="#616aee" mt="1em" color="white" width="155px">
                         Grade Quiz
